@@ -1,4 +1,4 @@
-#SSG AI Chatbot with Deep Learning Hack
+# SSG AI Chatbot with Deep Learning Hack
 
 ## Key technologies
 The technologies outlined and included in this solution are:
