@@ -79,6 +79,36 @@ Envisioning Plan 미팅 시에 나왔던 방안은 Web App(Windows)의 KUDU(SCM)
 
 ![images/AIServ-arch02.png](images/AIServ-arch02.png)
 
+다음의 스냅샷은 dockerfile과 webhook을 통해 자동 배포가 수행된 이력을 보여줍니다(다만, 보안적인 이유로 Webhook 스냅샷은 실제 고객사의 것이 아니며, 사전 테스트 중에 수행했던 것을 대체하여 보여주고 있음을 밝힙니다. 하지만, 실제와 거의 동일합니다)
+
+![images/AIServ-codeExam01.png](images/AIServ-codeExam01.png)
+
+#### Considering the Region
+
+게이트웨이의 역할이자, 챗봇 앱에 해당하는 Web API Gateway(chatbot)는 한국에서 서비스되고 있는데, AI Serving Layer(AI service like LUIS)는 Japan region에서 Web app for Container로 서비스하는 이유는 한국에는 아직 ACR이 제공되지 않기 때문입니다(ACR과 Web App for Container는 동일 Region에 있어야 비용 및 배포 시간이 절약됩니다). 만일, ACR을 한국에서 생성할 수 있었다면 더욱 빠른 Latency를 얻을 수 있었을 것입니다. 고객도 추후 한국에서 ACR이 서비스 된다면, 현재 AI Serving Layer와 관계된 모든 서비스(ACR, Web App for Container, Blob Storage for H5 model files etc)를 한국으로 옮길 의사가 있다고 하였습니다.
+
+#### Issues and Workaround
+
+기존 모듈을 Managed Service 환경으로 옮기면서 겪었던 몇가지 문제 중에 하나는 현재 고객이 Python으로 개발한 AI Inference 서비스의 구조가 약 1.7G의 모델 파일을 Flask 웹 서버가 시작하는 시점에 모두 메모리로 로드하여 서비스하는 구조이다 보니, WebApp이 처음 시작하는데 약 4분~5분 정도의 초기 로딩타임이 걸린다는 문제가 있습니다. 그런데, Web App for Container는 기본적으로 초기 시작 시간의 Limit이 230 seconds이기에, 고객사의 모듈을 올바로 시작할 수 없는 문제가 있었으며, 다음과 같은 Container Log가 계속해서 남는 것을 확인했습니다. 
+
+```python
+ERROR - Container site *****  did not start within expected time limit
+```
+
+고객사의 모듈이 최소 240~300 sec 이상의 시작 시간을 요구하기에 발생하는 문제였습니다. 이를 해결하기 위해서는 Web App의 App Settings에 **WEBSITES_CONTAINER_START_TIME_LIMIT**을 최대치인 **600** 초로 설정하여 올바로 로딩을 완료할 수 있었습니다.
+
+#### What customer consider for better performance
+
+그러나, 이러한 모델은 앞으로도 계속 커질 가능성이 있으며, 이는 결국 언젠가는 올바로 로딩할 수 없는 상황을 접하게 될 가능성이 높습니다. 더불어, 현재에도 배포와 SWAP 시 초기 로딩에 너무 많은 시간을 요구되는 것은 큰 문제입니다. 해서, 이러한 이슈는 애플리케이션을 튜닝(혹은 개발 변경)하여 기술적으로 개선할 필요가 있습니다. 고객은 이에 대한 고민을 시작할 것임을 시사했습니다. 
+
+덧붙여, 현재 작성된 dockerfile에서는 이미지 빌드 시에 필요한 Model 파일들을 모두 wget으로 로컬 경로로 복사한 뒤, 이미지로 빌드하고 있습니다. 이는 고객이 사용하는 h5py 라이브러리가 로컬 경로의 파일만 로드할 수 있다는 제약이 있기 때문인데요. 이 부분을 개선하여 Python에서 직접 Remote Location(Blob Storage)에 있는 h5 파일을 로드할 수 있도록 변경한다면, 혹은 다른 라이브러리를 사용해서 동일한 기능을 제공하도록 개선할 수 있다면 Docker  이미지 안에 모델 바이너리를 포함하지 않아도 되기에 빌드되는 이미지 크기와 Push 시에 업로드되는 크기도 현재하게 줄일 수 있을 것으로 예상됩니다.  그리고, 이를 해결한다면 앞서 초기 로딩에 많은 시간이 들어가는 문제도 같이 해결이 가능할 것으로 보입니다.
+
+#### Customer feedback
+
+Web App for Container의 Deployment Slot 간의 SWAP 시간이 너무 느립니다. Production과 Stage 모두가 올바로 동작하는 것을 확인하고 Swap을 진행하면, 이미 두 Web App이 모두 운영 상황에 있음에도 불구하고, 새로운 이미지를 다시 로드하는 수준의 시간이 걸린  뒤에 교체가 이루어집니다. Swap과 관련된 부분은 Microsoft의 담당 팀에서 개선이 필요하다고 생각합니다
+
+
+
 ### API Gateway(Chatbot App) Layer
 이하 내용 추가
 
