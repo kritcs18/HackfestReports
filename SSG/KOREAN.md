@@ -61,7 +61,7 @@ AI Serving Layer는 AI inference 역할을 수행하는 웹 서비스로, 기존
 
 > Refer to [Experiment and Performance Test for Deep Learning Inference & Serving : > GPU vs CPU (Korean)](http://hoondongkim.blogspot.jp/2017/12/deep-learning-inference-serving.html)
 >   - blog post by Hoondong Kim(SSG Chief Dev, AI Data platform team) 
->	- Topic : Is GPU really better than CPU in AI Inference?
+>-Topic : Is GPU really better than CPU in AI Inference?
 >   - Conclusion : CPU is better than GPU in their cases.
 
 
@@ -110,7 +110,35 @@ Web App for Container의 Deployment Slot 간의 SWAP 시간이 너무 느립니�
 
 
 ### API Gateway(Chatbot App) Layer
-이하 내용 추가
+#### As-Is
+API Gateway는 사실상 Chatbot app의 역할을 수행하며, SenBird의 WebHook을 통해서 채팅 사용자가 입력한 모든 구문을 전달받는 API Gateway의 역할을 수행합니다. 기존에는 Python / Flask 기반으로 개발되어 있었으며, 별도의 VM 상에서 운영 중에 있었습니다(개발환경은 jupyter 노트북을 사용). 
+
+#### What they want
+
+고객은 이번 핵페스트를 통해서 Managed Service 환경으로 바꾸기를 원했고, 기존의 로직을 분석해서 가능하다면 깔끔하게 로직을 정리하면서 서버리스 아키텍처도 도입되기를 바랬습니다. 그를 통해, 좀 더 효율적이고 효과적으로 챗봇의 개별 로직에만 집중하면서 계속해서 개선해 나가고자 합니다.
+
+#### Analysis and Design 
+
+문제점
+- API 호출이 하나의 큰 동기적인 호출로 구성되어 있다.
+- 모든 요청은 전체 메서드를 모두 수행한다.
+- 내부적으로 외부 API에 대한 호출이 수 차례 발생하고 그에 따라 분기되는 구조를 갖고 있다
+- 세션 정보를 보관하기 위해서 Redis를 사용하고 있으며, 그를 지원하기 위한 코드를 직접 관리한다
+
+기존의 로직을 개별적으로 모두 분석해 본 결과, 기존 Python 코드는 요청과 응답이 하나의 단일 Sync 호출로 이루어지는 구조였으며, 내부에서 다양한 condition에 따라 분기하는 로직을 가지고 있었습니다. 모든 사용자의 입력은 intent 분석을 위해서 AI Serving Layer을 호출하며, 얻어진 Intent에 따라 다양한 조건에 따라 로직이 분기되는 구조입니다. 그렇기에, 상황에 따라 로직이 Skip되는 경우도 있고, 상황에 따라서는 추가적으로 다른 API로의 외부 호출이 이루어져야 하는 경우도 있었습니다. 
+
+더욱 안 좋은 점은 그러한 모든 처리가 논리적으로는 하나의 큰 단일 메서드 안에서 단일 쓰레드로 처리되는 비효율적인 구조였다는 것입니다. 해서, 이러한 아키텍처 구조를 Async하게 변경하는 것이 바람직하며, 그와 동시에 각각의 로직을 분리하여 서버리스 아키텍처로 혁신하기로 하였습니다. 각 로직 간의 통신은 큐를 통해서 진행하고 최종 응답 메세지는 비동기적으로 SendBird에 Proactive 메세지로 전송하도록 아키텍처를 변경하였습니다.
+
+솔루션
+- 가능한 한 모든 분기 로직은 개별 Function을 분리한다
+- 모든 호출은 비동기로 처리한다.
+- 사용자에 대한 응답도 비동기적으로 Proactive Massage를 통해서 응답한다
+- 목적에 따라 다양한 큐를 활용하고 큐를 통해서 로직이 분기하도록 한다
+- 사용자의 상태는 Finction의 Input/output Binding을 사용하여 Cosmos DB에 저장하도록 한다.	
+
+그 결과 구성된 아키텍처는 다음과 같습니다.
+
+![APIgw-arch01.png](images/APIgw-arch01.png)
 
 ### Admin management Web Layer
 이하 내용 추가
