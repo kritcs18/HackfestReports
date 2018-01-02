@@ -154,6 +154,22 @@ API Gateway는 사실상 Chatbot app의 역할을 수행하며, SenBird의 WebHo
 
 케이스에 따라 서로 다른 큐로 메세지를 전달하고, 각각의 분기되는 로직은 해당 큐에 메세지가 오는 경우에만 수행하도록 변경하였습니다. 이는 기존의 수 많은 if, else if를 사용한 경우보다 직관적이며 각각의 로직에만 집중해서 코드를 개선할 수 있는 이점이 있습니다. 이러한 작업을 통해서 기존의 flask, python으로 작성되어 있던 로직은 C#, Function app으로 100% migration 되었습니다. 기존의 코드 예는 다음과 같습니다.
 
+![APIgw-code1.png](images/APIgw-code1.png)
+
+고객이 C#에 익숙하기 않기에 초기에는 약간의 걱정이 있었으나, Function에서 Trigger,Input, Output이 모두 Attribute로 지원되기에 상당 부분의 어려운 코드 영역은 단순히 어트리뷰트 설정만으로 완료할 수 있었고, 실제 로직만을 C#으로 변경하면 되었기에 크게 어렵지 않게 이러한 작업을 수행할 수 있었습니다. 마이그레이션 후 고객은 오히려 C#의 언어적인 멋진 기능들과 Visual Studio의 편리함에 대해서 만족스러워하였습니다. 실제로 사용된 코드의 예는 다음과 같습니다.
+
+![APIgw-code2.png](images/APIgw-code2.png)
+
+#### Performance
+
+모든 코드를 Queue를 활용하도록 분리한 뒤, 모의 테스트를 수행했을 때 결과는 만족스럽게도 2초 이내에 응답을 얻을 수 있었습니다. 사실상 가장 많은 시간이 소요되는 API Serving Layer를 거쳤음에도 총 소요시간이 2초 이내로 나온 것은 만족스러운 결과였습니다. 
+
+또한, 각 Function 들의 수행시간을 살펴보기 위해서 Function App에는  Application Insight도 적용하였습니다. 그렇기에,  Function App은 Application Insight를 통해서 모든 호출과 호출 빈도, 각 API의 실행 시간들을 실시간 모니터링 할 수 있습니다. 어떤 Function이 가장 많이 호출되고, 수행시간은 얼마나 걸리는지, 예외가 발생하는 경우 그 원인은 무엇인지 등을 각각의 Function 별로, 또한 실시간으로 살펴볼 수 있기에 디버깅 시에도 도움이 되며, 추후 개선해야 할 부분을 파악하는 데에도 도움이 됩니다.
+
+<모니터링 화면 삽입>
+
+현재 한국에서는 Consumption Plan이 지원되지 않고, 또한 고객도 초기에는 ASP를 직접 조정하여 적절한 비용 플랜을 검증하고자 하기에 현재는 S1 크기의 플랜으로 Function App은 동작하고 있습니다. 나중에 사용자의 요청이 몰릴 경우에는 좀 더 높은 Plan을 사용해야 할 것으로 예상됩니다.
+
 ### Admin management Web Layer
 이하 내용 추가
 
