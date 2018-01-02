@@ -62,10 +62,10 @@ AI Serving Layer는 AI Inference 역할을 수행하는 웹 서비스로, 기존
 
 아키텍처에 대해 함께 고민하던 중(After Envisioning Meeting), 고객은 자체적으로 사전에 성능 테스트를 수행하였고 그 결과 그들이 개발한 AI Serving Layer는 GPU보다는 CPU 환경에서 더욱 빠르게 동작한다는 테스트 결론을 얻었습니다(하단의 Refer 참고). 그렇기에 고객은 GPU 기반의 VM을 사용하는 IaaS 시나리오에서 벗어나, PaaS(Azure App Service) 환경까지 검통하게 되었으며, 이를 통해 유연한 개발 및 배포 환경을 확보할 수 있는 아키텍처를 원하게 되었습니다.
 
-> Refer to [Experiment and Performance Test for Deep Learning Inference & Serving : > GPU vs CPU (Korean)](http://hoondongkim.blogspot.jp/2017/12/deep-learning-inference-serving.html)
->   - blog post by Hoondong Kim(SSG Chief Dev, AI Data platform team) 
->-Topic : Is GPU really better than CPU in AI Inference?
->   - Conclusion : CPU is better than GPU in their cases.
+> Refer to [Experiment and Performance Test for Deep Learning Inference & Serving : > GPU vs CPU (Korean)](http://hoondongkim.blogspot.jp/2017/12/deep-learning-inference-serving.html) 
+>   - blog post by Hoondong Kim(SSG Chief Dev, AI Data platform team)  
+>   -Topic : Is GPU really better than CPU in AI Inference? 
+>   - Conclusion : CPU is better than GPU in their cases. 
 
 
 #### Analysis and Design 
