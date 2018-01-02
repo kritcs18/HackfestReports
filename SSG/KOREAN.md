@@ -103,7 +103,9 @@ Envisioning Plan 미팅 후에 검토되었던 방안은 Web App(Windows)의 KUD
 
 >> 이 부분은 이미지를 2개로 나누어서 올리는 것이 나을듯.
 
-![images/AIServ-codeExam01.png](images/AIServ-codeExam01.png)
+![Dockerfile](images/dockerfile.png)
+
+![Push history via WebHook](images/AiServ_ACR.png)
 
 #### Considering the Region
 
@@ -197,7 +199,7 @@ case에 따라 서로 다른 큐로 메세지를 전달하고, 각각의 분기�
 
 #### Issues and Workaround
 
-모든 개발 소스는 GitHub의 Private Repository와 통합되어야 하고 Web App의 Deployment Option 기능을 사용해서 자동 배포가 되어야 하는데, 현재 Web App의 Deployment Option에서 제공하는 GitHub 통합 기능은 Public Repository만 지원하고 Private Repository는 지원하지 않습니다. 그렇기에 이를 해결하기 위한 별도의 workaround가 필요했습니다. 이를 해결하려면 다음의 링크에서 제안하는 방법대로 약간의 메뉴얼적인 작업을 수행해 줄 필요가 있습니다.
+모든 개발 소스는 GitHub의 Private Repository와 통합되어야 하고 Web App의 Deployment Option 기능을 사용해서 자동 배포가 되어야 하는데, 현재 Web App의 Deployment Option에서 제공하는 GitHub 통합 기능은 Public Repository만 지원하고 Private Repository는 지원하지 않습니다. 그렇기에 이를 해결하기 위한 별도의 workaround가 필요했습니다. 이를 해결하려면 다음의 링크에서 제안하는 방법대로 약간의 메뉴얼적인 작업을 수행해 줄 필요가 있습니다. 
 
 Refer to https://nsamteladze.wordpress.com/2015/07/19/continuous-deployment-from-github-enterprise-repository-to-azure-web-app/. 
 
