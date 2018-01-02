@@ -16,10 +16,17 @@ The technologies outlined and included in this solution are:
 
 ## Core Team
 The team was comprised of members from SSG AI team and Microsoft CSE:
-- Hoondong Kim
-- Hun Choi
-- .
-- .
+- SSG.COM
+    - Hoondong Kim : chief lead
+    - Sung Ryu : dev 
+    - Donghoon Seo : dev 
+    - Younggyu Jeon : dev 
+    - Insuk Seo : dev 
+- Microsoft 
+    - Taeyoung Kim : TE 
+    - Hun Choi : PM 
+    - Chris Auld : TE lead 
+    - Krit kamuto : TE 
 
 ## Partner profile
 Shinsegae is The largest retailer in South Korea with E-Mart(160 stores across the country), Shinsegae department stores, TRADERS as their subsidiary. Also, SSG.COM, integrated e-commerce service for their subsidiaries’ e-commerce site, growing fast ($800M revenue, 37.6% YoY growth in CY16)  …  
