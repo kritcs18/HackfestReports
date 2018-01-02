@@ -31,7 +31,7 @@ Shinsegae is The largest retailer in South Korea with E-Mart(160 stores across t
 ![images/as-is-arch.png](images/as-is-arch.png)
 
 ## Requirements and goals
-For this technical engagement, we defined these milestones before the hackfest:
+For this technical engagement, we defined requirements:
 	
 - Customer doesn’t want to worry about Infra and VMs anymore
 - Customer wants flexible and scalable Architecture
@@ -39,15 +39,16 @@ For this technical engagement, we defined these milestones before the hackfest:
 - Customer want to analysis call logs and have visibility
 
 ## Source Repos
-![Github repos](images/repos.png)
+- total 4 Private Repos, one for each service layer
+    ![Github repos](images/repos.png)
 
 ## Technical Delivery
 
 ## Architectural Decisions & Solutions
 
-각각의 기술 영역에 대해서 고객과 MS 엔지니어들은 다음과 같은 설계를 결정하였다.
+각각의 기술 Layer에 대해서 고객과 MS 엔지니어들은 다음과 같은 설계를 결정하였다.
 
-### AI Model Traininig Layer
+### **Layer 1 : AI Model Traininig Layer** 
 이하 내용 추가
 
 After Hackfest
@@ -57,7 +58,7 @@ Title : Deep Learning with distributed GPU based on Azure Batch AI
 Link : https://onoffmix.com/event/123844
 
 
-### **AI Inference(& Serving) Layer**
+### **Layer 2 : AI Inference(& Serving) Layer**
 
 #### As-Is 
 
@@ -122,7 +123,7 @@ ERROR - Container site *****  did not start within expected time limit
 현재의 Web App for Container 플랫폼은 Deployment Slot 간에 Swap을 수행하는 데 너무 많은 시간이 걸립니다. Production과 Stage 모두가 올바로 동작하는 것을 확인하고 Swap을 수행하는 경우, 이미 두 Web App이 모두 운영 상황에 있음에도 불구하고, 새로운 이미지를 다시 로드하는 만큼의 시간이 걸린 뒤에 Swap이 수행됩니다. Swap 시간과 관련된 부분은 Microsoft의 담당 개발팀에서 개선이 필요하다고 생각합니다
 
 
-### **API Gateway(Chatbot App) Layer** 
+### **Layer 3 : API Gateway(Chatbot App) Layer** 
 #### As-Is
 API Gateway는 사실상 Chatbot app의 역할을 수행하며, SenBird의 WebHook을 통해서 채팅 사용자가 입력한 모든 구문을 전달받는 API Gateway의 역할을 수행합니다. 기존에는 Python / Flask 기반으로 개발되어 있었으며, 별도의 VM 상에서 운영 중에 있었습니다(개발환경은 jupyter 노트북을 사용). 
 
