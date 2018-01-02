@@ -105,7 +105,7 @@ Dockerfile Example
 ![Dockerfile](images/dockerfile.png)
 
 Push History via Container WebHook 
-![Push history via WebHook](images/AiServ_ACR.png)
+![Push history via WebHook](images/AiServ_ACR_s.png)
 
 #### Considering the Region
 
