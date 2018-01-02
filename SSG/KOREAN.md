@@ -104,7 +104,7 @@ Envisioning Plan 미팅 후에 검토되었던 방안은 Web App(Windows)의 KUD
 Dockerfile Example   
 ![Dockerfile](images/dockerfile.png)
 
-Push History via Container WebHook 
+Push History via Container WebHook   
 ![Push history via WebHook](images/AiServ_ACR_s.png)
 
 #### Considering the Region
@@ -120,6 +120,9 @@ ERROR - Container site *****  did not start within expected time limit
 ```
 
 이는 고객사의 모듈이 최소 240~300 sec 이상의 로딩 시간을 요구하기에 발생하는 문제입니다. 이를 해결하기 위해서 Web App의 App Settings에 **WEBSITES_CONTAINER_START_TIME_LIMIT**을 최대치인 **600** 초로 설정하였으며, 그 결과 올바로 로딩을 완료할 수 있었습니다.
+
+Application Setting for Stage       
+![Application Setting for Stage](images/AiServ_Stage_App_Settings_s.png)
 
 #### What customer consider for better performance
 
