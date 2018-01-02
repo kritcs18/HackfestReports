@@ -140,6 +140,20 @@ API Gateway는 사실상 Chatbot app의 역할을 수행하며, SenBird의 WebHo
 
 ![APIgw-arch01.png](images/APIgw-arch01.png)
 
+#### Re-Design Control Flow and Code Blocks
+
+이제 정의된 아키텍처에 따라 기존의 코드들을 분석하고, 재작성 가능 여부를 점검하는 과정이 필요합니다. 고객은 가능하다면 Python을 사용하고 싶어했지만, 아직 Azure Function에서는 Python이 Experimental로만 지원되는 상황이기에 좀 더 안정적인 언어를 선택해야 했습니다. 결과적으로 모든 기존 코드를 C#으로 마이그레이션 하는 데에 동의하였고, 개발 언어와 플랫폼이 변경됨에 따라 기존 Python 코드와 제어 흐름을 모두 분석할 필요가 있었습니다. 
+
+고객사의 API Gateway 개발 담당자와 1일 동안 모든 로직을 분석하면서 Function 수준의 분리작업을 수행하였고, 기존에 Redis로 보관하던 사용자의 상태 정보는 Cosmos DB를 사용하여 안정성과 가용성을 높이도록 하였습니다. 로직을 분리하고 정리하면서 아키텍처는 더욱 간소화되었고 불필요한 기존 코드도 깔끔하게 정리되었습니다.
+
+![APIgw-arch02.png](images/APIgw-arch02.png)
+
+현재까지 개발된 API Gateway 로직들을 Function으로 분리한 아키텍처는 다음과 같습니다.
+
+![APIgw-arch03.png](images/APIgw-arch03.png)
+
+케이스에 따라 서로 다른 큐로 메세지를 전달하고, 각각의 분기되는 로직은 해당 큐에 메세지가 오는 경우에만 수행하도록 변경하였습니다. 이는 기존의 수 많은 if, else if를 사용한 경우보다 직관적이며 각각의 로직에만 집중해서 코드를 개선할 수 있는 이점이 있습니다. 이러한 작업을 통해서 기존의 flask, python으로 작성되어 있던 로직은 C#, Function app으로 100% migration 되었습니다. 기존의 코드 예는 다음과 같습니다.
+
 ### Admin management Web Layer
 이하 내용 추가
 
