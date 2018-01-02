@@ -2,17 +2,17 @@
 
 ## Key technologies
 The technologies outlined and included in this solution are:
-- Azure Batch and Batch AI to train deep learning training 
-- Azure Logic App to notify changes of trained model 
-- Web App for Container on Linux to host AI inference Service
-- Private container registry using Azure Container Registry.
-- Continuous deployment using Container WebHook from Azure Container Registry to Web App for Container  
-- Deployment Slot for staging/production environments swap in Web App for Container
-- Azure Functions to host API Gateway(customer's Chatbot) with Serverless Architecture
-- Continuous deployment with Github Private Repository
-- Cosmos DB (SQL) for managing state of end users
-- Azure Storage Queue for Reactive communication between Azure Functions
-- Application Insight to monitor performance and usage of API gateway
+- [Azure Batch and Batch AI](https://azure.microsoft.com/en-us/services/batch-ai/) to train deep learning training 
+- [Azure Logic App](https://azure.microsoft.com/en-us/services/logic-apps/) to notify changes of trained model 
+- [Web App for Container on Linux](https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-custom-docker-image) to host AI inference Service
+- Private container registry using [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/).
+- [Continuous Deployment](https://docs.microsoft.com/en-us/azure/app-service/app-service-continuous-deployment) using [Container WebHook](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-webhook) from Azure Container Registry to Web App for Container  
+- [Deployment Slot](https://docs.microsoft.com/en-us/azure/app-service/web-sites-staged-publishing) for staging/production environments swap in Web App for Container
+- [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) to host API Gateway(customer's Chatbot) with Serverless Architecture
+- Continuous Deployment with [Github Private Repository](https://github.com/)
+- [Cosmos DB (SQL)](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction) for managing state of end users
+- [Azure Storage Queue](https://azure.microsoft.com/en-us/services/storage/queues/) for Reactive communication between Azure Functions
+- [Application Insight](https://azure.microsoft.com/en-us/services/application-insights/) to monitor performance and usage of API gateway
 
 ## Core Team
 The team was comprised of members from SSG AI team and Microsoft CSE:
@@ -51,7 +51,10 @@ For this technical engagement, we defined these milestones before the hackfest:
 
 #### As-Is 
 
-AI Serving Layer는 AI inference 역할을 수행하는 웹 서비스로, 기존에는 Python 언어로 개발되어 있었으며, DSVM의 Ubuntu 머신 내 Flask 웹 서버 상에서 운영 중에 있었습니다(개발환경은 jupyter 노트북을 사용). 사용하는 라이브러리는 tensorflow(1.3.0), keras(2.0.8), python-twitter 등 입니다.
+AI Serving Layer는 AI Inference 역할을 수행하는 웹 서비스로, 기존에는 Python 언어로 개발되어 있었으며, [Data Science Virtual Machine](https://azure.microsoft.com/en-us/services/virtual-machines/data-science-virtual-machines/)(OS는 Ubuntu) 머신 내 Flask 웹 서버 상에서 운영 중에 있습니다(개발환경은 jupyter 노트북을 사용). 사용하는 라이브러리는 tensorflow(1.3.0), keras(2.0.8), python-twitter 등 입니다.
+
+AI Training Service Layer에서 trained된 Model를 가져다가 사용한다. 
+
 
 #### What they want
 
@@ -169,6 +172,12 @@ API Gateway는 사실상 Chatbot app의 역할을 수행하며, SenBird의 WebHo
 <모니터링 화면 삽입>
 
 현재 한국에서는 Consumption Plan이 지원되지 않고, 또한 고객도 초기에는 ASP를 직접 조정하여 적절한 비용 플랜을 검증하고자 하기에 현재는 S1 크기의 플랜으로 Function App은 동작하고 있습니다. 나중에 사용자의 요청이 몰릴 경우에는 좀 더 높은 Plan을 사용해야 할 것으로 예상됩니다.
+
+#### Issues and Workaround
+
+모든 개발 소스는 GitHub의 Private Repository을 통해서 Web App의 Deployment Option 기능을 사용해서 자동 배포가 되어야 하는데, 현재 Web App의 Deployment Option에서 제공하는 GitHub Repository는 Public Repository만 지원이 되고, Private Repository는 지원되지 않기에 별도의 workaround가 필요했습니다. 이를 해결하려면 다음의 링크에서 제안하는 방법대로 약간의 메뉴얼적인 작업을 수행해 줄 필요가 있습니다.
+
+Refer to https://nsamteladze.wordpress.com/2015/07/19/continuous-deployment-from-github-enterprise-repository-to-azure-web-app/. 
 
 ### Admin management Web Layer
 이하 내용 추가
