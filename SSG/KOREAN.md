@@ -99,7 +99,10 @@ Envisioning Plan 미팅 후에 검토되었던 방안은 Web App(Windows)의 KUD
 
 ![images/AIServ-arch02.png](images/AIServ-arch02.png)
 
-다음의 스냅샷은 Dockerfile과 Webhook을 통해 자동 배포가 수행된 이력을 보여줍니다(다만, 보안적인 이유로 Webhook 스냅샷은 실제 고객사의 것이 아니며, 사전 테스트 중에 수행했던 것을 대체하여 보여주고 있음을 밝힙니다. 하지만, 실제와 거의 동일합니다)
+다음의 스냅샷은 Dockerfile의 코드와 Web App의 Azure Container Registry 설정 및 Webhook을 통해 자동 배포가 수행된 이력을 보여줍니다.
+
+Azure Container Registry Settings    
+![Azure Container Registry Settings](images/AiServ_Docker_Container_s.png)
 
 Dockerfile Example   
 ![Dockerfile](images/dockerfile.png)
