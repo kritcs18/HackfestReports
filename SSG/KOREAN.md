@@ -215,8 +215,24 @@ Refer to https://nsamteladze.wordpress.com/2015/07/19/continuous-deployment-from
 
 >> 류성의 피드백이 있으면 좋을 듯. 바로 윗 ^ 구문 참고해서 작성하면 좋을 듯.
 
-### Admin management Web Layer
-이하 내용 추가
+### Admin Management WebSite Layer
+
+#### As-is 
+Admin Web Site는 관리자 전용 웹 사이트입니다. 관리자는 Admin 웹사이트에서 다양한 Utterance를 입력하고, 각종 질의 관련 Rule을 등록하는 등 Intent, Entity와 연계된 다양한 관리 기능을 사용할 수 있습니다. 또한, 관리자는 On-Demand 방식으로 Model Training을 즉각 수행하도록 명령을 실행할 수도 있습니다. 관리자 웹 사이트는 PHP로 개발되었으며, 다양한 CSS 및 Bootstrap UI들을 사용하여 화려한 UI를 제공하고 있습니다. 현재는 Azure VM에서 호스팅되고 있으며, 수동으로 소스 배포 및 관리되고 있습니다.
+
+#### What customer want
+
+고객은 다른 Layer들과 마찬가지로 Admin WebSite Layer도 별도의 VM에서 이를 관리하기 보다는 언제든지 Scale in/out이 가능한 PaaS 플랫폼을 적용하고자 했습니다.  다만, 현재 일부 라이브러리들이 다소 복잡하게 흩어져 있어서 Azure App Service로 이전하려면 기존의 구조를 단일 폴더의 하위로 통합하는 작업이 필요합니다. 또한, 기존의 파일 업로드 기능도 기능 개선이 필요합니다.  정리하자면, IaaS 환경에 맞춰 개발된 기존 소스 구조를 PaaS에서 매끄럽게 운영이 가능하도록 마이그레이션을 하길 바랬습니다. 또한, Github private에 커밋한 소스들이 즉각 Web App에 반영되기를 원했습니다. 
+
+#### Analysis and Design 
+
+현재는 일부 클라이언트 라이브러리들이 VM 로컬에 다소 복잡하게 흩어져 있고, 상대적인 경로로 매핑이 되어져 있기 때문에 Azure App Service로 이전하려면 기존의 흩어져있는 폴더 구조를 단일 폴더의 하위로 통합하는 작업이 필요합니다. 그렇기에, 다운로드 되어 있는 수십 개의 클라언트 라이브러리 중에서 사용되는 것과 사용되지 않는 것들을 파악해서 사용하는 것들만 따로 모아서 정리하는 작업을 수행했습니다.
+
+또한, 기존의 파일 업로드 기능도 App Service에서 올바로 동작하도록 코드 레벨에서의 수정이 필요했습니다.  기존에는 사용자들이 파일을 업로드하면 로컬 서버의 Temp 드라이브에 임시적으로 저장한 뒤, 서버 내 특정 위치로 이동시키는 방식으로 코드가 작성되어 있는데, 이를 Azure Storage에 통합되어 저장되도록 변경해야 합니다. 
+
+
+
+그리고, 그 밖에 발생가능한 이슈들에 대해서는 Migration 후에 메뉴얼 테스트를 통해서 문제점을 확인하고 점검해야 합니다.
 
 ## Business impact
 이하 내용 추가
