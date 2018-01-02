@@ -38,6 +38,14 @@ For this technical engagement, we defined these milestones before the hackfest:
 - Customer wants C/D strategy and easy maintenance
 - Customer want to analysis call logs and have visibility
 
+## Prerequisites
+
+- Install Visual Studio Code
+- Set up an account for Power BI.
+- Set Up GitHub Private repos
+![Github repos](images/repos.png)
+
+
 ## Technical Delivery
 
 ## Architectural Decisions & Solutions
@@ -46,6 +54,13 @@ For this technical engagement, we defined these milestones before the hackfest:
 
 ### AI Model Traininig Layer
 이하 내용 추가
+
+After Hackfest
+고객은 이번 핵페스트에서 경험한 Batch AI 기술에 대한 만족도가 높았고, 자신이 경험한 기술적인 가치를 다른 데이터 개발자들에게 알리고 싶어했습니다. 해서, 고객인 김훈동 리더는 이러한 내용을 정리하여 다음과 같은 제목으로 Hands-On Lab을 진행하였습니다.
+
+Title : Deep Learning with distributed GPU based on Azure Batch AI  
+Link : https://onoffmix.com/event/123844
+
 
 ### **AI Inference(& Serving) Layer**
 
@@ -64,9 +79,8 @@ AI Serving Layer는 AI Inference 역할을 수행하는 웹 서비스로, 기존
 
 > Refer to [Experiment and Performance Test for Deep Learning Inference & Serving : > GPU vs CPU (Korean)](http://hoondongkim.blogspot.jp/2017/12/deep-learning-inference-serving.html) 
 >   - blog post by Hoondong Kim(SSG Chief Dev, AI Data platform team)  
->   -Topic : Is GPU really better than CPU in AI Inference? 
+>   - Topic : Is GPU really better than CPU in AI Inference? 
 >   - Conclusion : CPU is better than GPU in their cases. 
-
 
 #### Analysis and Design 
 
