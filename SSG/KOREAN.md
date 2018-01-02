@@ -188,7 +188,7 @@ case에 따라 서로 다른 큐로 메세지를 전달하고, 각각의 분기�
 
 고객이 C#에 익숙하기 않기에 초기에는 약간의 걱정이 있었으나, Function에서는 Trigger, Input, Output이 모두 Attribute로 간단하게 설정이 가능하기에 상당 부분의 어려운 코드 영역은 단순히 어트리뷰트 설정만으로 완료할 수 있었고, 실제 로직만을 C#으로 변경하면 되었기에 크게 어렵지 않게 이러한 작업을 수행할 수 있었습니다. 마이그레이션 후 고객은 오히려 C#의 언어적인 멋진 기능들과 Visual Studio의 편리함에 만족스러워하였습니다. 실제로 사용된 코드의 예는 다음과 같습니다.
 
-![APIgw-code2.png](images/APIgw-code2.png)
+![APIgw-code3.png](images/APIgw-code3.png)
 
 #### Performance
 
