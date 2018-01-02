@@ -40,7 +40,7 @@ For this technical engagement, we defined requirements:
 
 ## Source Repos
 - total 4 Private Repos, one for each service layer
-    ![Github repos](images/repos.png)
+    ![Github repos](images/Repos.png)
 
 ## Technical Delivery
 
