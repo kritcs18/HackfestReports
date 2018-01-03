@@ -72,7 +72,7 @@ For this technical engagement, we defined requirements:
 
 다만, 이번 핵페스트에서 필요한 Azure Resource 들이 모든 Region에서 사용 가능하지는 않기에, 고객 입장에서 성능적으로 가장 효과적이게 지역적으로 배분한 모습은 다음과 같다.
 
-![Main Architecture by region](images/main_arch2.png)
+![Main Architecture by region](images/main_arch_region.png)
 
 
 
