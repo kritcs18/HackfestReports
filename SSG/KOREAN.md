@@ -96,7 +96,7 @@ AI Serving Layer는 AI Inference 역할을 수행하는 웹 서비스로, 기존
 
 기존 운영 방식은 별도의 Single VM에서 Model(.H5) 바이너리 파일(Deep Learning 서비스를 통해서 Trained 된 모델)을 h5py 라이브러리를 사용하여 메모리에 통채로 올려서 서비스를 제공하는 방식이었기에, 기본적으로 구동시키는 데에 메모리를 최소 2G(trained model의 size가 약 1.7G) 이상 소비하는 구조로 되어 있었습니다. 기존의 아키텍처는 이를 1대의 DSVM에서 운영하도록 설계가 되어 있었습니다만(일종의 검증 상황이었기에 Availability Set 없이 Single VM으로 운영), 실제 운영환경에서는 아키텍처를 다시 설계하여 보다 효율적인 환경과 구조가 필요하다고 생각하고 있습니다. 특히, 가능하다면 IaaS 환경이 아닌 PaaS 환경을 적용하여 안정성, 효율성, 관리성을 확보하고 싶어합니다.
 
-아키텍처에 대해 함께 고민하던 중(After Envisioning Meeting), 고객은 자체적으로 사전에 성능 테스트를 수행하였고 그 결과 그들이 개발한 AI Serving Layer는 GPU보다는 CPU 환경에서 더욱 빠르게 동작한다는 테스트 결론을 얻었습니다(하단의 Refer 참고). 그렇기에 고객은 GPU 기반의 VM을 사용하는 IaaS 시나리오에서 벗어나, PaaS(Azure App Service) 환경까지 검통하게 되었으며, 이를 통해 유연한 개발 및 배포 환경을 확보할 수 있는 아키텍처를 원하게 되었습니다.
+아키텍처에 대해 함께 고민하던 중(After Envisioning Meeting), 고객은 자체적으로 사전에 성능 테스트를 수행하였고 그 결과 그들이 개발한 AI Serving Layer는 GPU보다는 CPU 환경에서 더욱 빠르게 동작한다는 테스트 결론을 얻었습니다(하단의 Refer 참고). 그렇기에 고객은 GPU 기반의 VM을 사용하는 IaaS 시나리오에서 벗어나, PaaS(Azure App Service) 환경을 검토하게 되었으며, 이를 통해 유연한 개발 및 배포 환경을 확보할 수 있는 아키텍처를 원하게 되었습니다.
 
 > Refer to [Experiment and Performance Test for Deep Learning Inference & Serving : > GPU vs CPU (Korean)](http://hoondongkim.blogspot.jp/2017/12/deep-learning-inference-serving.html) 
 >   - blog post by Hoondong Kim(SSG Chief Dev, AI Data platform team)  
