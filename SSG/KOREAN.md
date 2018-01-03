@@ -90,12 +90,12 @@ need to fill
 
 #### Customer Feedback
 
-고객은 이번 핵페스트에서 경험한 Batch AI 기술에 대한 만족도가 높았고, 자신이 경험한 기술적인 가치를 다른 데이터 개발자들에게 알리고 싶어했습니다. 해서, 김훈동 리더는 수 차례 블로그에 이번 핵페스트에서 다루었던 실험 내용들을 정리해서 다른 개발자들에게 공유하고 있습니다. 
+고객사의 기술 리더인 김훈동 Chief 리드는 전공이 Deep Learning이기에 이번 핵페스트에서 다루어본 CNTK와 Batch AI 기술에 대해 만족도가 대단히 높았다. Facebook과 Slack을 통해서 이번 핵페스트가 큰 도움이 되었음을 여러 차례 피력하였으며 또한, 자신이 경험한 기술적인 가치를 다른 데이터 개발자들에게 알리고 싶어했다. 해서, 그는 수 차례 블로그에 이번 핵페스트에서 다루었던 실험 내용들을 정리해서 다른 개발자들에게 공유하고 있다. 
 
 Title : Deep Learning Multi Host & Multi GPU Architecture with tensorflow, cntk, keras, horovod, **Azure Batch AI**    
 Link : http://hoondongkim.blogspot.kr/2018/01/deep-learning-multi-host-multi-gpu.html
 
-심지어는, 이러한 내용을 단계별로 정리하여 다음과 같은 제목으로 개발자 커뮤니티와 함께 Hands-On Lab을 진행하기도 하였습니다.
+심지어는, 이러한 내용을 단계별로 정리하여 다음과 같은 제목으로 개발자 커뮤니티와 함께 Hands-On Lab을 진행하기도 하였다.
 
 Title : Deep Learning with distributed GPU based on Azure Batch AI  
 Link : https://onoffmix.com/event/123844
@@ -105,16 +105,18 @@ Link : https://onoffmix.com/event/123844
 
 #### As-Is 
 
-AI Serving Layer는 AI Inference 역할을 수행하는 웹 서비스로, 기존에는 Python 언어로 개발되어 있었으며, [Data Science Virtual Machine](https://azure.microsoft.com/en-us/services/virtual-machines/data-science-virtual-machines/)(OS는 Ubuntu) 머신 내 Flask Web server 상에서 운영 중에 있습니다(개발환경은 jupyter 노트북을 사용). 사용하는 라이브러리는 tensorflow(1.3.0), keras(2.0.8), python-twitter 등 입니다.
+AI Serving Layer는 AI Inference 역할을 수행하는 웹 서비스로, 기존에는 Python 언어로 개발되어 있었으며, [Data Science Virtual Machine](https://azure.microsoft.com/en-us/services/virtual-machines/data-science-virtual-machines/)(OS는 Ubuntu) 머신 내 Flask Web server 상에서 운영 중에 있다(개발환경은 jupyter 노트북을 사용). 사용하는 라이브러리는 tensorflow(1.3.0), keras(2.0.8), python-twitter 등이다.
 
-이 Layer는 AI Training Service Layer에서 trained된 Model data(.h5)를 가져다가 메모리에 올려서 사용하고 있습니다.
-
+이 서비스는 역할적으로는 LUIS 즉, [Language Understanding Intelligent Service](https://www.luis.ai/)와 유사한 서비스이다. SSG.COM 데이터 플랫폼 팀에서 자체 개발한 AI Model Training Layer에서 trained된 Model(.H5) 바이너리 파일을 h5py 라이브러리를 사용하여 Flask 웹서버의 메모리에 통채로 올려서 LUIS 관련 서비스를 제공하다. 현재 주된 역할은 챗봇 사용자의 메시지에 대한 Intent와 Entity 등을 파악하는 것이지만, 이후로는 더 많은 역할을 수행하도록 계속해서 발전될 예정이다. 
 
 #### What customer want
 
-기존 운영 방식은 별도의 Single VM에서 Model(.H5) 바이너리 파일(Deep Learning 서비스를 통해서 Trained 된 모델)을 h5py 라이브러리를 사용하여 메모리에 통채로 올려서 서비스를 제공하는 방식이었기에, 기본적으로 구동시키는 데에 메모리를 최소 2G(trained model의 size가 약 1.7G) 이상 소비하는 구조로 되어 있었습니다. 기존의 아키텍처는 이를 1대의 DSVM에서 운영하도록 설계가 되어 있었습니다만(일종의 검증 상황이었기에 Availability Set 없이 Single VM으로 운영), 실제 운영환경에서는 아키텍처를 다시 설계하여 보다 효율적인 환경과 구조가 필요하다고 생각하고 있습니다. 특히, 가능하다면 IaaS 환경이 아닌 PaaS 환경을 적용하여 안정성, 효율성, 관리성을 확보하고 싶어합니다.
+기존 서비스는 기본적으로 구동시키는 데에 메모리를 최소 2G(trained model의 size가 약 1.7G) 이상 소비하는 구조로 되어 있다. 또한, GPU를 활용하는 것이 성능적으로 나을 것이라는 기대때문에 Data Science VM에서 운영하도록 설계가 되어 있다(일종의 검증 상황이었기에 Availability Set 없이 Single VM으로 운영). 하지만, 이는 최적의 운영 환경은 아닐 것이라고 생각하고 있으며, 더 나은 환경이 무엇인지 검증하고 싶어했다.
 
-아키텍처에 대해 함께 고민하던 중(After Envisioning Meeting), 고객은 자체적으로 사전에 성능 테스트를 수행하였고 그 결과 그들이 개발한 AI Serving Layer는 GPU보다는 CPU 환경에서 더욱 빠르게 동작한다는 테스트 결론을 얻었습니다(하단의 Refer 참고). 그렇기에 고객은 GPU 기반의 VM을 사용하는 IaaS 시나리오에서 벗어나, PaaS(Azure App Service) 환경을 검토하게 되었으며, 이를 통해 유연한 개발 및 배포 환경을 확보할 수 있는 아키텍처를 원하게 되었습니다.
+사전 기술 미팅 중에 우리는 층이 그리 깊지 않은 Deep Learning 모델은 CPU만으로도 만족할만한 성능을 얻을 수 있을 것 같다는 의견을 제시하였고, 고객은 이러한 의견에 동의하여 핵페스트 이전에 사전 성능 테스트를 통해서 그에 대한 결과를 확인하기로 하였다. 
+
+테스트 결과, 그들이 개발한 AI Serving Layer는 GPU보다는 CPU 환경에서 더욱 빠르게 동작한다는 테스트 결과를 얻었다(하단의 Refer 참고). 그에 따라 고객은 GPU 기반의 VM을 사용하는 IaaS 시나리오에서 벗어나, PaaS(Azure App Service) 환경을 도입하길 원했으며, 이를 통해 안정성, 관리성 뿐만 아니라 유연한 개발 및 배포 환경을 확보하고자 하였다.
+
 
 > Refer to [Experiment and Performance Test for Deep Learning Inference & Serving : > GPU vs CPU (Korean)](http://hoondongkim.blogspot.jp/2017/12/deep-learning-inference-serving.html) 
 >   - blog post by Hoondong Kim(SSG Chief Dev, AI Data platform team)  
