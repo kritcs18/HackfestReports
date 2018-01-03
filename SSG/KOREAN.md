@@ -64,7 +64,17 @@ For this technical engagement, we defined requirements:
 1. AI Model Training Layer : Tenserflow와 keras를 사용하여 Deep Learning을 수행하는 레이어
 2. AI Inference(& Serving) Layer : Python, Flask, keras를 사용하여 모델 데이터를 Web API로 서빙하는 레이어(이는 LUIS 즉, [Language Understanding Intelligent Service](https://www.luis.ai/)와 유사한 서비스이다).
 3. API Gateway(Chatbot App) Layer: Python, Flask 기반으로 ChatBot Application 역할을 수행하는 Web API 서비스. 채널 및 방관리는 SendBird를 활용한다.
-4. Admin Management WebSite Layer : PHP로 개발된 관리자용 웹 사이트. Intent나 Entity 관리 및 Realtime Training 호출 등의 작업을 수행할 수 있다.  
+4. Admin Management WebSite Layer : PHP로 개발된 관리자용 웹 사이트. Intent나 Entity 관리 및 Realtime Training 호출 등의 작업을 수행할 수 있다.
+
+각각의 서비스에 대해서 기술적인 부분과 지역적인 고려, 고객의 요구사항들을 반영하여 정의된 최종 아키텍처는 다음과 같다.
+
+![Main Architecture](images/main_arch1.png)
+
+다만, 이번 핵페스트에서 필요한 Azure Resource 들이 모든 Region에서 사용 가능하지는 않기에, 고객 입장에서 성능적으로 가장 효과적이게 지역적으로 배분한 모습은 다음과 같다.
+
+![Main Architecture by region](images/main_arch2.png)
+
+
 
 ## Architectural Decisions & Solutions
 
