@@ -54,16 +54,18 @@ IaaS 기반의 아키텍처는 추후 운영 규모가 커질 경우, 자연스�
 
 For this technical engagement, we defined requirements:
 
-- Customer doesn’t want to worry about Infra and VMs anymore
-- Customer wants flexible and scalable Architecture
-- Customer wants C/D strategy and easy maintenance
-- Customer want to analysis call logs and have visibility
+- 각각의 서비스들은 가능하다면 PaaS 환경에서 운영하도록 설계한다.
+- 유연하고(flexible) 확장가능한(scalable) Architecture로 설계한다.
+- 배포가 빈번하게 발생하는 서비스 Layer에 대해서는 자동 배포(Continuous Deployment) 전략을 적용한다.
+- 서버리스 아키텍처가 적용 가능한 서비스 Layer에는 그를 적용한다.
+- 모든 요청/응답 데이터는 로그로 남겨서 차트 등을 통해서 가시적으로 살펴볼 수 있어야 한다.
 
 ## Source Repos
 
 고객사의 요청에 의해서, 이번 핵페스트에서는 GitHub Private Repo를 사용하도록 한다.
 각각의 서비스 Layer별로 전용 Repo를 구성하였으며, 구성된 Repository의 모습은 다음과 같다.
-- total 4 Private Repos, one for each service layer
+
+- total 4 Private Repos, one for each service layer 
 
     ![Github repos](images/Repos.png)
 
