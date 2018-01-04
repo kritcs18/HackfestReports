@@ -319,7 +319,13 @@ https://github.com/taeyo/AzurePaaS/tree/master/WebAppBasicArch
 
 ```php
 <?php
-    ... 중략 ..
+...
+use MicrosoftAzure\Storage\Common\ServicesBuilder;
+use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
+use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
+use MicrosoftAzure\Storage\Common\ServiceException;
+
+... 중략 ..
 
     $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
     $pic = "ICO_".microtime(TRUE)."_".$_FILES['iconf']['name'];
