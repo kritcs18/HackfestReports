@@ -334,19 +334,19 @@ use MicrosoftAzure\Storage\Common\ServiceException;
     $folder = "/home/site/wwwroot/****/";
     $arrayValue = strtolower(array_pop( explode( '.', $pic )));
 
-        if ( $arrayValue == "****" ) {
-            if(move_uploaded_file($pic_loc,$folder.$pic) ) {
-                //echo $folder.$pic;
-                $image = $folder.$pic;
-                $content = fopen($image,"r");
-                $blob_name = $pic;
-                try{
-                    $blobRestProxy->createBlockBlob("files", $blob_name, $content);
-                }
-                catch(ServiceException $e){
-                    $code = $e->getCode();
-                    ...
-                }
+    if ( $arrayValue == "****" ) {
+        if(move_uploaded_file($pic_loc,$folder.$pic) ) {
+            //echo $folder.$pic;
+            $image = $folder.$pic;
+            $content = fopen($image,"r");
+            $blob_name = $pic;
+            try{
+                $blobRestProxy->createBlockBlob("files", $blob_name, $content);
+            }
+            catch(ServiceException $e){
+                $code = $e->getCode();
+                ...
+            }
 ```
 
 
