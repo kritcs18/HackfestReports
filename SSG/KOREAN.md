@@ -371,11 +371,12 @@ Envisioning Session
 ![1](photos/hack_envision01.jpg)| ![2](photos/hack_envision02.jpg)
 ![3](photos/hack_envision03.jpg)| ![4](photos/hack_envision04.jpg)
 
-Hackfest  
+Hackfest
 
-![4](photos/hack_01.jpg) | ![6](photos/hack_03.jpg)
-![7](photos/hack_04.jpg) | ![8](photos/hack_05.jpg)
-![9](photos/hack_06.jpg) | ![10](photos/hack_07.jpg)
+![4](photos/hack_01.jpg) | ![6](photos/hack_02.jpg)
+![7](photos/hack_03.jpg) | ![8](photos/hack_04.jpg)
+![9](photos/hack_05.jpg) | ![10](photos/hack_08.jpg)
+![9](photos/hack_07.jpg) | ![10](photos/hack_06.jpg)
 
 
 ## Business impact
