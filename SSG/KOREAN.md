@@ -369,9 +369,9 @@ Refer to https://nsamteladze.wordpress.com/2015/07/19/continuous-deployment-from
 Envisioning Session
 
 ![1](photos/hack_envision01.jpg)| ![2](photos/hack_envision02.jpg)
-![3](photos/hack_envision03.jpg)
+![3](photos/hack_envision03.jpg)| ![4](photos/hack_envision04.jpg)
 
-Hackfest
+Hackfest  
 
 ![4](photos/hack_01.jpg) | ![6](photos/hack_03.jpg)
 ![7](photos/hack_04.jpg) | ![8](photos/hack_05.jpg)
