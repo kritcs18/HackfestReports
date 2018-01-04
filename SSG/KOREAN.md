@@ -295,6 +295,8 @@ Admin Web Site는 관리자 전용 웹 사이트이다. 관리자는 Admin 웹�
 
 고객은 다른 Layer들과 마찬가지로 Admin WebSite Layer도 별도의 VM에서 이를 관리하기 보다는 언제든지 Scale in/out이 가능한 PaaS 플랫폼을 적용하고자 했다. 다만, 현재 일부 클라이언트 라이브러리들이 다소 복잡하게 흩어져 있어서 Azure App Service로 이전하려면 기존의 구조를 단일 폴더의 하위로 통합하는 작업이 필요했다. 그렇기에, IaaS 환경에 맞춰 개발된 기존 소스 구조를 PaaS에서 매끄럽게 운영이 가능하도록 마이그레이션을 하길 희망했다. 또한, Github private에 커밋된 소스들이 즉각 Web App에 반영되기를 원했다.
 
+또한, 데이터 저장소로 Maria DB를 사용하고 있는데, 이 부분을 MySQL on Azure로 변경하고 싶어했다. 하지만, 아직 MySQL on Azure은 Preview 상태이며, Korea Region에서 지원되지 않기에 이와 관련된 작업은 이번 핵페스트에서는 제외하기로 했다.
+
 #### Analysis and Design 
 
 현재는 일부 클라이언트 라이브러리들이 VM 로컬에 다소 복잡하게 흩어져 있고, 상대적인 경로로 매핑이 되어져 있기 때문에 Azure App Service로 이전하려면 기존의 흩어져있는 폴더 구조를 단일 폴더의 하위로 통합하는 작업이 필요하다. 그렇기에, 다운로드 되어 있는 수십 개의 클라언트 라이브러리 중에서 사용되는 것과 사용되지 않는 것들을 파악해서 사용하는 것들만 따로 모아서 정리하는 작업을 수행했다.
@@ -313,9 +315,7 @@ https://github.com/taeyo/AzurePaaS/tree/master/WebAppBasicArch
 
 ![Admin Web Site Architecture](images/admin01.png)
 
-그리고, 그 밖에 발생가능한 이슈들에 대해서도 Migration 후에 메뉴얼 혹은 UI 테스트를 통해서 문제점을 확인하고 점검해야 한다.
-
-<관리자 웹 사이트 캡춰 화면 필요>
+기존 코드를 Blob Storage를 사용하도록 변경된 소스 중 일부는 다음과 같다.
 
 ```php
 <?php
@@ -348,6 +348,10 @@ use MicrosoftAzure\Storage\Common\ServiceException;
                 ...
             }
 ```
+
+그리고, 그 밖에 발생가능한 이슈들에 대해서도 Migration 후에 메뉴얼 혹은 UI 테스트를 통해서 문제점을 확인하고 점검해야 한다.
+
+<관리자 웹 사이트 캡춰 화면 필요>
 
 
 #### Issues and Workaround
