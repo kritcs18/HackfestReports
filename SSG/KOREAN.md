@@ -239,7 +239,7 @@ API Gateway는 사실상 ChatBot App의 역할이다. 채널 및 방 관리를 �
 
 ![APIgw-arch01.png](images/APIgw-arch01.png)
 
-#### Re-Design Control Flow and Code Blocks
+#### Re-Design Control Flow and Logics
 
 정의된 아키텍처에 따라 기존의 코드들을 분석하고 재작성이 가능한 지 여부를 점검했다. 고객은 가능하다면 Python을 사용하고 싶어했지만, 아직 Azure Function에서는 Python이 Experimental로만 지원되는 상황이기에 좀 더 안정적인 언어를 선택해야 했다. 결과적으로 고객은 모든 기존 코드를 C#으로 마이그레이션 하는 데에 동의하였고, 개발 언어와 플랫폼이 변경됨에 따라 기존 Python 코드와 제어 흐름을 모두 서버리스 아키텍처에 맞게 분해할 필요가 있었다.
 
@@ -301,12 +301,50 @@ Admin Web Site는 관리자 전용 웹 사이트이다. 관리자는 Admin 웹�
 
 또한, 기존의 파일 업로드 기능도 App Service에서 올바로 동작하도록 코드 레벨에서의 수정이 필요했다. 기존에는 사용자들이 파일을 업로드하면 로컬 서버의 Temp 드라이브에 임시적으로 저장한 뒤, 서버 내 특정 위치로 이동시키는 방식으로 코드가 작성되어 있는데, 이를 Azure Storage에 통합하여 저장하도록 변경해야 한다.
 
+그 밖에 PaaS를 도입할 경우 주의해야 할 사항들을 고객에게 전달하여 추가 개발 시에도 참고하도록 하였다. 참고 문서의 링크는 다음과 같다.
+
+Web App을 Azure PaaS로 마이그레이션 할 경우 고려해야 할 사항들
+https://github.com/taeyo/AzurePaaS/tree/master/ConsiderationWhileMigrateWebAppToAzure
+
+Azure Web App으로 마이그레이션 시 참고할만한 구조적 예시
+https://github.com/taeyo/AzurePaaS/tree/master/WebAppBasicArch
+
 이를 반영하여 작성된 아키텍처는 다음과 같다.
 
 ![Admin Web Site Architecture](images/admin01.png)
 
 그리고, 그 밖에 발생가능한 이슈들에 대해서도 Migration 후에 메뉴얼 혹은 UI 테스트를 통해서 문제점을 확인하고 점검해야 한다.
 
+<관리자 웹 사이트 캡춰 화면 필요>
+
+```php
+<?php
+    ... 중략 ..
+
+    $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
+    $pic = "ICO_".microtime(TRUE)."_".$_FILES['iconf']['name'];
+    $pic_loc = $_FILES['iconf']['tmpName'];
+
+    $folder = "/home/site/wwwroot/****/";
+    $arrayValue = strtolower(array_pop( explode( '.', $pic )));
+
+        if ( $arrayValue == "****" ) {
+            if(move_uploaded_file($pic_loc,$folder.$pic) ) {
+                //echo $folder.$pic;
+                $image = $folder.$pic;
+                $content = fopen($image,"r");
+                $blob_name = $pic;
+                try{
+                    $blobRestProxy->createBlockBlob("files", $blob_name, $content);
+                }
+                catch(ServiceException $e){
+                    $code = $e->getCode();
+                    ...
+                }
+```
+
+
+#### Issues and Workaround
 
 ----------------------
 
