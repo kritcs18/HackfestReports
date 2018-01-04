@@ -349,10 +349,13 @@ use MicrosoftAzure\Storage\Common\ServiceException;
             }
 ```
 
-그리고, 그 밖에 발생가능한 이슈들에 대해서도 Migration 후에 다양한 테스트를 통해서 문제점이 있는지 확인하고 계속해서 개선해 나가고 있다.
+그리고, 실제 운영중인 모습은 다음과 같다.
 
 <관리자 웹 사이트 캡춰 화면 필요>
 
+고객은 Migration 후에 다양한 테스트를 수행하여 문제가 발생할 가능성이 있는 부분을 보완해나가고 있으며 현재까지도 계속해서 기능을 추가 및 개선해 나가고 있다. 다음은 최근에도 코드 커밋이 수행되고 있는 Repo의 모습이다.
+
+![Repo](images/admin02.png)
 
 #### Issues and Workaround
 
