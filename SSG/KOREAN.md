@@ -68,6 +68,10 @@ For this technical engagement, we defined requirements:
 
     ![Github repos](images/Repos.png)
 
+## Project Management
+
+### 최훈 이사가 작성할 것임
+
 ## Technical Delivery
 
 이번 핵페스트에서는 전체 Production 서비스를 이루고 있는 총 4개의 서비스 영역에 대해서 기존의 아키텍처를 분석하고 최적화된 to-be 아키텍처를 정의하였으며 또한, 각 영역의 담당 개발자들과 함께 각각의 서비스 영역에 대해 기술 검증 및 마이그레이션을 수행하였다. 이번 핵페스트에서 다루어진 서비스 Layer들은 다음과 같다.
@@ -383,7 +387,18 @@ Hackfest
 이하 내용 추가
 
 ## Partner technical engagement feedback
-이하 내용 추가
+
+다음은 이번 핵페스트에 참여한 SSG.COM 개발자들의 피드백이다.
+
+### 주의! 이는 가상으로 적어놓은 예시 피드백입니다. 실제 고객의 피드백이 아닙니다.
+
+> 이번 핵페스트를 통해서 다양한 기술적인 실험을 할 수 있어서 만족스러웠습니다. 원래 계획했던 실험은 Multi Host, Multi GPU Job을 Tensorflow + Keras 조합을 사용해서 Azure Batch AI 에서 운영하려는 것이었지만, Horovod와 CNTK를 활용할 경우 더 효과적일수 있다는 조언에 그 부분까지 모두 핵페스트 기간에 실험하느라 밤이 깊어가는 줄도 몰랐던 것 같습니다. 이번 핵페스트를 통해서 최종 아키텍처를 제대로 검증하고 결정할 수 있었기에 매우 만족스럽습니다.
+>
+> 김훈동 Chief Lead, SSG AI Data Platform
+
+> 저는 이번 핵페스트에서 AI Model Traning Layer를 Sub로 참여하였고, API Gateway Layer는 Main으로 맡아서 진행했습니다. 특히, 김태영 부장과 함께 API Gateway의 모든 기존의 Python 로직들을 분해해서 서버리스 기반으로 전면 재구성을 하였습니다. 핵페스트 기간 내에 코드 마이그레이션까지 가능할 것이라고는 생각하지 못했는데, 실제로 끝내게 되다니 꽤나 놀라운 경험이었습니다. Azure에서 제공하는 서버리스 기술이 얼마나 편리한지도 직접적으로 깨달을 수 있었습니다. 기회가 있다면 한번 더 핵페스트에 참여해보고 싶습니다.
+>
+> 유성 dev,  SSG AI Data Platform
 
 ## Conclusion
 이하 내용 추가
