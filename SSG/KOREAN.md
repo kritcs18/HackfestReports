@@ -92,13 +92,16 @@ For this technical engagement, we defined requirements:
 
 각각의 서비스 Layer에 대해서 고객과 MS 엔지니어들은 다음과 같이 설계하고 구현하였다.
 
-### **Layer 1 : AI Model Traininig Layer** 
+----------------------
+
+### **Layer 1 : AI Model Traininig Layer**
+
 ----------------------
 need to fill
 
 #### will be filled out by Chris and Krit
-----------------------
 
+----------------------
 
 #### Customer Feedback
 
@@ -112,14 +115,17 @@ Link : http://hoondongkim.blogspot.kr/2018/01/deep-learning-multi-host-multi-gpu
 Title : Deep Learning with distributed GPU based on Azure Batch AI  
 Link : https://onoffmix.com/event/123844
 
+----------------------
 
 ### **Layer 2 : AI Inference(& Serving) Layer**
 
-#### As-Is 
+----------------------
+
+#### As-Is
 
 AI Serving Layer는 AI Inference 역할을 수행하는 웹 서비스로, 기존에는 Python 언어로 개발되어 있었으며, [Data Science Virtual Machine](https://azure.microsoft.com/en-us/services/virtual-machines/data-science-virtual-machines/)(OS는 Ubuntu) 머신 내 Flask Web server 상에서 운영 중에 있다(개발환경은 jupyter 노트북을 사용). 사용하는 라이브러리는 tensorflow(1.3.0), keras(2.0.8), python-twitter 등이다.
 
-이 서비스는 역할적으로는 LUIS 즉, [Language Understanding Intelligent Service](https://www.luis.ai/)와 유사한 서비스이다. SSG.COM 데이터 플랫폼 팀에서 자체 개발한 AI Model Training Layer에서 trained된 Model(.H5) 바이너리 파일을 h5py 라이브러리를 사용하여 Flask 웹서버의 메모리에 통채로 올려서 LUIS 관련 서비스를 제공하다. 현재 주된 역할은 챗봇 사용자의 메시지에 대한 Intent와 Entity 등을 파악하는 것이지만, 이후로는 더 많은 역할을 수행하도록 계속해서 발전될 예정이다. 
+이 서비스는 역할적으로는 LUIS 즉, [Language Understanding Intelligent Service](https://www.luis.ai/)와 유사한 서비스이다. SSG.COM 데이터 플랫폼 팀에서 자체 개발한 AI Model Training Layer에서 trained된 Model(.H5) 바이너리 파일을 h5py 라이브러리를 사용하여 Flask 웹서버의 메모리에 통채로 올려서 LUIS 관련 서비스를 제공하다. 현재 주된 역할은 챗봇 사용자의 메시지에 대한 Intent와 Entity 등을 파악하는 것이지만, 이후로는 더 많은 역할을 수행하도록 계속해서 발전될 예정이다.
 
 #### What customer want
 
@@ -150,13 +156,16 @@ Envisioning Plan 미팅 후에 검토되었던 방안은 Web App(Windows)의 KUD
 
 다음의 스냅샷은 Dockerfile의 코드와 Web App의 Azure Container Registry 설정 및 Webhook을 통해 자동 배포가 수행된 이력을 보여준다.
 
-Azure Container Registry Settings    
+Azure Container Registry Settings
+
 ![Azure Container Registry Settings](images/AiServ_Docker_Container_s.png)
 
-Dockerfile Example   
+Dockerfile Example
+
 ![Dockerfile](images/dockerfile.png)
 
-Push History via Container WebHook   
+Push History via Container WebHook
+
 ![Push history via WebHook](images/AiServ_ACR_s.png)
 
 #### Considering the Region
@@ -173,7 +182,8 @@ ERROR - Container site *****  did not start within expected time limit
 
 이는 고객사의 모듈이 최소 240~300 sec 이상의 로딩 시간을 요구하기에 발생하는 문제이다. 이를 해결하기 위해서는 Web App의 App Settings에 **WEBSITES_CONTAINER_START_TIME_LIMIT**을 최대치인 **600** 초로 설정해야 하며, 그 결과 올바로 로딩을 완료할 수 있었다.
 
-Application Setting for Stage       
+Application Setting for Stage
+
 ![Application Setting for Stage](images/AiServ_Stage_App_Settings_s.png)
 
 #### What customer consider for better performance
@@ -186,19 +196,26 @@ Application Setting for Stage
 
 현재의 Web App for Container 플랫폼은 Deployment Slot 간에 Swap을 수행하는 데 너무 많은 시간이 걸린다. Production과 Stage 모두가 올바로 동작하는 것을 확인하고 Swap을 수행하는 경우에도(이미 두 Web App이 모두 운영 상황에 있음에도 불구하고) 새로운 이미지를 다시 로드하는 만큼의 시간이 걸린 뒤에 Swap이 수행된다. Swap 시간과 관련된 부분은 Microsoft의 담당 개발팀에서 개선해 줄 필요가 있다.
 
-### **Layer 3 : API Gateway(Chatbot App) Layer** 
+----------------------
+
+### **Layer 3 : API Gateway(Chatbot App) Layer**
+
+----------------------
+
 #### As-Is
+
 API Gateway는 사실상 Chatbot App의 역할을 수행하며, SenBird의 WebHook을 통해서 봇 사용자가 물어오는 모든 채팅 내용을 수신하는 API Gateway의 역할을 수행한다. 기존에는 Python/Flask 기반으로 개발되었으며, 별도의 VM 상에서 운영 중에 있다(개발환경은 jupyter 노트북을 사용). 
 
 #### What they want
 
 고객은 이번 핵페스트를 통해서 챗봇의 서비스 환경을 IaaS가 아닌 Managed Service 환경으로 바꾸기를 희망했고, 가능하다면 기존의 서비스 로직을 분석해서 깔끔하게 로직을 재 정리하면서 동시에 서버리스 아키텍처가 적용되기를 희망했습니다. 그를 통해, 좀 더 효율적이고 효과적으로 챗봇의 개별 로직에만 집중하면서 서비스를 지속적으로 개선해 나가고 싶어했습니다.
 
-#### Analysis and Design 
+#### Analysis and Design
 
 기존의 서비스 로직을 분석해 본 결과 다음과 같은 문제점들이 도출되었습니다.
 
 문제점
+
 - API 호출이 하나의 큰 동기적인 호출로 구성되어 있다.
 - 모든 요청은 전체 메서드를 모두 수행한다.
 - 내부적으로 외부 API에 대한 호출이 수 차례 발생하고 그에 따라 분기되는 구조를 갖고 있다
