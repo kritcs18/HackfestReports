@@ -72,7 +72,7 @@ For this technical engagement, we defined requirements:
 
 ### 최훈 이사가 작성할 것임
 
-## Technical Delivery
+## Technical Delivery 
 
 이번 핵페스트에서는 전체 Production 서비스를 이루고 있는 총 4개의 서비스 영역에 대해서 기존의 아키텍처를 분석하고 최적화된 to-be 아키텍처를 정의하였으며 또한, 각 영역의 담당 개발자들과 함께 각각의 서비스 영역에 대해 기술 검증 및 마이그레이션을 수행하였다. 이번 핵페스트에서 다루어진 서비스 Layer들은 다음과 같다.
 
@@ -396,7 +396,7 @@ Hackfest
 >
 > 김훈동 Chief Lead, SSG AI Data Platform
 
-> 저는 이번 핵페스트에서 AI Model Traning Layer를 Sub로 참여하였고, API Gateway Layer는 Main으로 맡아서 진행했습니다. 특히, 인상적인 부분은 김태영 부장과 함께 API Gateway의 모든 기존의 Python 로직들을 분해해서 서버리스 기반으로 전면 재구성을 한 것입니다. 핵페스트 기간 내에 코드 마이그레이션까지 가능할 것이라고는 생각하지 못했는데, 실제로 끝내게 되다니 꽤나 놀라운 경험이었습니다. 덕분에 Azure에서 제공하는 서버리스 기술이 얼마나 편리한지도 직접적으로 깨달을 수 있었습니다. 기회가 있다면 한번 더 핵페스트에 참여해보고 싶습니다.
+> 저는 이번 핵페스트에서 AI Model Traning Layer를 Sub로 참여하였고, API Gateway Layer는 Main으로 맡아서 진행했습니다. 특히, 인상적인 부분은 김태영 부장과 함께 API Gateway의 모든 기존의 Python 로직들을 분해해서 서버리스 기반으로 전면 재구성을 한 것입니다. 핵페스트 기간 내에 코드 마이그레이션까지 가능할 것이라고는 생각하지 못했는데, 실제로 끝내게 되다니 꽤나 놀라운 경험이었습니다. 덕분에 Azure에서 제공하는 서버리스 기술이 얼마나 편리한 지도 직접적으로 느껴볼 수 있었습니다. 기회가 있다면 한번 더 핵페스트에 참여해보고 싶습니다.
 >
 > 유성 dev,  SSG AI Data Platform
 
