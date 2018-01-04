@@ -364,6 +364,19 @@ use MicrosoftAzure\Storage\Common\ServiceException;
 Refer to https://nsamteladze.wordpress.com/2015/07/19/continuous-deployment-from-github-enterprise-repository-to-azure-web-app/
 
 ----------------------
+## Moments of the Hackfest
+
+Envisioning Session
+
+![1](photos/hack_envision01.jpg)| ![2](photos/hack_envision02.jpg)
+![3](photos/hack_envision03.jpg)
+
+Hackfest
+
+![4](photos/hack_01.jpg) | ![6](photos/hack_03.jpg)
+![7](photos/hack_04.jpg) | ![8](photos/hack_05.jpg)
+![9](photos/hack_06.jpg) | ![10](photos/hack_07.jpg)
+
 
 ## Business impact
 이하 내용 추가
