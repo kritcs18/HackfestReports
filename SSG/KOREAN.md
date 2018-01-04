@@ -349,12 +349,16 @@ use MicrosoftAzure\Storage\Common\ServiceException;
             }
 ```
 
-그리고, 그 밖에 발생가능한 이슈들에 대해서도 Migration 후에 메뉴얼 혹은 UI 테스트를 통해서 문제점을 확인하고 점검해야 한다.
+그리고, 그 밖에 발생가능한 이슈들에 대해서도 Migration 후에 다양한 테스트를 통해서 문제점이 있는지 확인하고 계속해서 개선해 나가고 있다.
 
 <관리자 웹 사이트 캡춰 화면 필요>
 
 
 #### Issues and Workaround
+
+다른 Layer와 마찬가지로 Admin 관리 웹사이트인 이 Layer도 GitHub의 Private Repository와 통합되어야 하고 Web App의 Deployment Option 기능을 사용해서 자동 배포가 되도록 구성해야 했다. 하지만, 앞서 언급했던 것과 마찬가지로 현재 Azure  App Servuce는 Private Repository와 통합하기 위해서는 다소 우회적인 방법을 사용해야 한다. 이 이슈는 다음 링크를 참고하자.
+
+Refer to https://nsamteladze.wordpress.com/2015/07/19/continuous-deployment-from-github-enterprise-repository-to-azure-web-app/
 
 ----------------------
 
