@@ -1,5 +1,7 @@
 # SSG AI Chatbot with Deep Learning Hack
 
+SSG.COM의 AI Data Platform 팀은 다양한 오픈소스를 사용하여 자체 AI ChatBot을 개발하여 서비스하고 있다. 하지만, 현재의 아키텍처가 효과적인 지에 대해 의구심이 있었고 Microsoft와 함께 더 나은 아키텍처를 얻어내기 위한 여정을 떠나고자 하였다. Deep Learning부터 Serverless까지 가능한 한 필요한 모든 영역을 이번 핵페스트를 통해서 검증한다.
+
 ## Key technologies
 
 The technologies outlined and included in this solution are:
@@ -66,7 +68,7 @@ For this technical engagement, we defined requirements:
 - 서버리스 아키텍처가 적용 가능한 서비스 Layer에는 그를 적용한다.
 - 모든 요청/응답 데이터는 로그로 남겨서 차트 등을 통해서 가시적으로 살펴볼 수 있어야 한다.
 
-## Source Repos
+## Sources Repository
 
 고객사의 요청에 의해서 이번 핵페스트에서는 GitHub Private Repo를 사용한다. 각각의 서비스 Layer별로 전용 Repo를 구성하였으며 구성된 Repository의 모습은 다음과 같다.
 
