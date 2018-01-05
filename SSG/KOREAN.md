@@ -61,6 +61,7 @@ For this technical engagement, we defined requirements:
 
 - 각각의 서비스들은 가능하다면 PaaS 환경에서 운영하도록 설계한다.
 - 유연하고(flexible) 확장가능한(scalable) Architecture로 설계한다.
+- AI Model Training은 Multi-Host, Multi-GPU를 활용하도록 설계한다.
 - 배포가 빈번하게 발생하는 서비스 Layer에 대해서는 자동 배포(Continuous Deployment) 전략을 적용한다.
 - 서버리스 아키텍처가 적용 가능한 서비스 Layer에는 그를 적용한다.
 - 모든 요청/응답 데이터는 로그로 남겨서 차트 등을 통해서 가시적으로 살펴볼 수 있어야 한다.
@@ -408,7 +409,33 @@ Hackfest
 > 유성 dev,  SSG AI Data Platform
 
 ## Conclusion
-이하 내용 추가
+
+### Our Impact
+
+핵페스트 이후, SSG.COM의 AI Chatbot은 IaaS에서 PaaS로 플랫폼 혁신이 이루어졌으며 이러한 사례가 SSG.COM 내부적으로 공유되어 다른 여러 부서에서도 모범 사례로 평가받고 있다. 또한, 이러한 아키텍처를 타 부서에서도 참고하기 시작했다.
+
+핵페스트 이후, 김훈동 Lead는 지속적으로 Tensorflow, keras, CNTK, Horovod를 조합하여 Azure Batch AI에서 운영하는 다양한 테스트를 진행하고 있다. 그러면서, 기술적으로 Layer를 더욱 효율적으로 조정해 나가고 있다. 또한, 그가 경험한 기술적인 가치들을 자신의 블로그를 통해서 다른 데이터 전문가들과 공유하고 있다. 
+
+https://www.facebook.com/kim.hoondong/posts/10214834432715314
+
+Deep Learning Multi Host & Multi GPU Architecture 
+Link : http://hoondongkim.blogspot.kr/2018/01/deep-learning-multi-host-multi-gpu.html
+
+심지어는, 이러한 내용을 단계별로 정리하여 다음과 같은 제목으로 개발자 커뮤니티와 함께 Hands-On Lab을 진행하기도 하였다.
+
+HOL Deep Learning with Multi-GPU based on Azure Batch AI  
+Link : https://onoffmix.com/event/123844
+
+핵페스트 이후, 관리자 웹 사이트는 하루에도 여러번 Commit 되고 지속적으로 Web App에 배포가 이루어지면서 기능적으로 개선되어 나가고 있다. 
+
+### General lessons
+
+AI Model Trainig 서비스를 Azure Batch AI에서 운영하는 것은 매우 훌륭한 선택이었다. 특히, CNTK나 Horovod를 활용하여 다양한 테스트들을 수행함으로써 SSG.COM의 AI 데이터 팀에게 맞는 최적의 아키텍처를 얻어낼 수 있었다. 
+
+AI Inference Layer에 Container 기술을 접목시킨 것도 매우 좋은 시도였다. 이번 핵페스트를 준비하면서 막연하게 GPU에 의존했던 기존 방식들이 과연 의미가 있는지를 새로운 시각으로 점검해 볼 수 있었다. 그리고, 여러 검증을 통해서 비용적으로도, 기술적으로도 개선된 아키텍처를 확보할 수 있었다. 특히, Azure Web App에 컨테이너 기술을 접목하는 구성은 상당히 효과적이었다. 
+
+ChatBot App을 완전히 서버리스 아키텍처로 마이그레이션한 것도 큰 성과였다. 개발자는 이제 개별 로직에만 집중할 수 있게 되었으며, 다양한 외부 서비스들(상태 서버, 데이터베이스, 큐 등)을 이용하는 부분에 있어 적은 노력으로 큰 효과를 누릴 수 있게 되었다. 이렇게 기술에 대한 신뢰가 쌓임으로써 고객은 차기 버전에서는 Microsoft Bot Framework를 활용하는 것도 고려하고 있다.
 
 ## Future possibilities
+
 이하 내용 추가
