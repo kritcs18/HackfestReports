@@ -76,7 +76,7 @@ For this technical engagement, we defined requirements:
 
 ## Project Management
 
-### 최훈 이사가 작성할 것임
+### Commit 테스트를 한다.
 
 ## Technical Delivery 
 
