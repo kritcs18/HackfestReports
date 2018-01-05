@@ -414,7 +414,7 @@ Hackfest
 
 핵페스트 이후, SSG.COM의 AI Chatbot은 IaaS에서 PaaS로 플랫폼 혁신이 이루어졌으며 이러한 사례가 SSG.COM 내부적으로 공유되어 다른 여러 부서에서도 모범 사례로 평가받고 있다. 또한, 이러한 아키텍처를 타 부서에서도 참고하기 시작했다.
 
-핵페스트 이후, 김훈동 Lead는 지속적으로 Tensorflow, keras, CNTK, Horovod를 조합하여 Azure Batch AI에서 운영하는 다양한 테스트를 진행하고 있다. 그러면서, 기술적으로 Layer를 더욱 효율적으로 조정해 나가고 있다. 또한, 그가 경험한 기술적인 가치들을 자신의 블로그를 통해서 다른 데이터 전문가들과 공유하고 있다. 
+핵페스트 이후, 김훈동 Lead는 지속적으로 Tensorflow, keras, CNTK, Horovod를 조합하여 Azure Batch AI에서 운영하는 다양한 테스트를 진행하고 있다. 그러면서, 서비스 Layer를 더욱 효율적으로 개선해 나가고 있다(전처리와 후처리를 기존 모듈에서 분리하여 더 효과적으로 개선하고 있다). 또한, 그가 경험한 기술적인 가치들을 자신의 블로그를 통해서 다른 데이터 전문가들과 지속적으로 공유하고 있다.
 
 https://www.facebook.com/kim.hoondong/posts/10214834432715314
 
@@ -423,7 +423,7 @@ Link : http://hoondongkim.blogspot.kr/2018/01/deep-learning-multi-host-multi-gpu
 
 심지어는, 이러한 내용을 단계별로 정리하여 다음과 같은 제목으로 개발자 커뮤니티와 함께 Hands-On Lab을 진행하기도 하였다.
 
-HOL Deep Learning with Multi-GPU based on Azure Batch AI  
+HOL : Deep Learning with Multi-GPU based on Azure Batch AI  
 Link : https://onoffmix.com/event/123844
 
 핵페스트 이후, 관리자 웹 사이트는 하루에도 여러번 Commit 되고 지속적으로 Web App에 배포가 이루어지면서 기능적으로 개선되어 나가고 있다. 
