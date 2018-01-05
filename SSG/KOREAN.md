@@ -55,7 +55,7 @@ IaaS 기반의 아키텍처는 추후 운영 규모가 커질 경우, 자연스�
 
 ![images/as-is-arch.png](images/as-is-arch.png)
 
-## Requirements and goals (내용 수정해야 함)
+## Requirements and Goals
 
 For this technical engagement, we defined requirements:
 
@@ -74,9 +74,15 @@ For this technical engagement, we defined requirements:
 
     ![Github repos](images/Repos.png)
 
-## Project Management
+## Project Planning & Management
 
 ### 최훈 이사가 작성할 것임
+
+VSTS를 통해서 Agile 관리한 내용.  
+아침마다 칸반 보드 미팅한 내용.  
+총 Task 개수, 총 User Story 개수  
+도출된 이슈 내용 등   
+
 
 ## Technical Delivery 
 
