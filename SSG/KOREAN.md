@@ -76,7 +76,7 @@ For this technical engagement, we defined requirements:
 
 ## Project Planning & Management
 
-### 최훈 이사가 작성할 것임
+### Commit 테스트를 한다.
 
 VSTS를 통해서 Agile 관리한 내용.  
 아침마다 칸반 보드 미팅한 내용.  
