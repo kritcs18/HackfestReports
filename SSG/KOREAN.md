@@ -4,7 +4,7 @@
 
 The technologies outlined and included in this solution are:
 
-- [Azure Batch and Batch AI](https://azure.microsoft.com/en-us/services/batch-ai/) to train deep learning training
+- [Azure Batch and Batch AI](https://azure.microsoft.com/en-us/services/batch-ai/) to train deep learning model
 - [Azure Logic App](https://azure.microsoft.com/en-us/services/logic-apps/) to notify changes of trained model
 - [Web App for Container on Linux](https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-custom-docker-image) to host AI inference Service
 - Private container registry using [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/).
