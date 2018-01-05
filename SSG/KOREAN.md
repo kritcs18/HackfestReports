@@ -34,8 +34,8 @@ The team was comprised of members from SSG AI team and Microsoft CSE:
 
 ## Hackfest period
 
-Envisioning Workshop : Dec, 1, 2017  
-Hackfest : Dec 18 ~ 22, 2017 / 5 days  
+Envisioning Workshop : Dec 1 2017  
+Hackfest : Dec 18 ~ 22 2017 / 5 days  
 
 ## Partner profile (내용 수정해야 함)
 
