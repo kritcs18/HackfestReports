@@ -21,16 +21,21 @@ The technologies outlined and included in this solution are:
 The team was comprised of members from SSG AI team and Microsoft CSE:
 
 - SSG.COM
-  - Hoondong Kim : Chief lead, Deep Learnig
-  - Sung Ryu : Deep Learnig, Serverless
-  - Donghoon Seo : Container
-  - Younggyu Jeon : Python, Container
-  - Insuk Seo : PHP, Web App
+  - Hoondong Kim : Chief Lead / Deep Learnig, Batch AI
+  - Sung Ryu : Developer / Deep Learnig, Serverless
+  - Donghoon Seo : Developer / Docker, Container
+  - Younggyu Jeon : Developer / Python, Docker, Container
+  - Insuk Seo : Developer / PHP, Web App
 - Microsoft 
-  - Taeyoung Kim : Design, Serverless, WebApp, Container, Code Migration etc
-  - Hun Choi : PM, Project Management
-  - Chris Auld : Batch, Deep Learning, CNTK etc
-  - Krit kamuto : Batch, Deep Learning, CNTK etc
+  - Taeyoung Kim : TE / Architecture, Serverless, WebApp, Container, Code Migration etc
+  - Hun Choi : PM / Project Management
+  - Chris Auld : TE Manager / Batch AI, Deep Learning, CNTK etc
+  - Krit kamuto : TE / Batch AI, Deep Learning, CNTK etc
+
+## Hackfest period
+
+Envisioning Workshop : Dec, 1, 2017  
+Hackfest : Dec 18 ~ 22, 2017 / 5 days  
 
 ## Partner profile (내용 수정해야 함)
 
@@ -80,6 +85,8 @@ For this technical engagement, we defined requirements:
 2. AI Inference(& Serving) Layer : Python, Flask, keras를 사용하여 모델 데이터를 Web API로 서빙하는 레이어(이는 LUIS 즉, [Language Understanding Intelligent Service](https://www.luis.ai/)처럼 Intent 분석을 수행하는 서비스이다).
 3. API Gateway(Chatbot App) Layer: Python, Flask 기반으로 ChatBot Application 역할을 수행하는 Web API 서비스. 채널 및 방 관리는 SendBird를 활용한다.
 4. Admin Management WebSite Layer : PHP로 개발된 관리자용 웹 사이트. Intent나 Entity 관리 및 Realtime Training 호출 등의 작업을 수행할 수 있다.
+
+### Proposed architecture
 
 각각의 서비스에 대해서 기술적인 부분과 지역적인 고려, 고객의 요구사항들을 반영하여 정의된 최종 아키텍처는 다음과 같다.
 
