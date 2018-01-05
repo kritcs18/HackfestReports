@@ -96,7 +96,7 @@ Collaboration Tool로 Slack과 VSTS를 사용. VSTS의 경우 Build 자동화 �
 
 초기 요구사항 정리 후 실제 핵페스트를 준비하면서 기간 대비 Scope이 너무 Challengeable해서 최종 Scope에서 Sharding DB 마이그레이션은 다음 스프린트로 넘기는 걸로 핵페스트 이전에 협의하였다. 
 
-기존 개발 환경에서 AI Serving Layer은 GPU기반의 DSVM에서 가동되고 있었고 실제 Production 환경도 GPU 자원을 사용하기를 원했다. 이 경우 아키텍쳐ㅇㅇㅇㅇ
+기존 개발 환경에서 AI Inference Layer는 GPU기반의 DSVM에서 가동되고 있었고 실제 Production 환경도 GPU 자원을 사용하기를 원했다. 이 경우 Azure Web App이 아닌 ACS와 같은 다른 솔루션을 적용해야하기도 하고, 고객도 이 부분에 대해 명확히 GPU를 사용해야한다는 확신이 없는 상황이었다. 실제 Hack에 영향을 줄 수 있는 불확실성을 최소화하기 위해 핵페스트 이전에 CPU와 GPU VM 상에서 성능 비교 테스트를 제안했고 자체적으로 벤치마킹테스트를 수행해서 AI Inference 관련 워크로드는 오히려 CPU가 GPU 대비하여 더 나은 성능을 제공한다는 의미 있는 결과를 도출했고 프로젝트의 범위도 명확해졌다.
 
 VSTS를 통해서 Agile 관리한 내용.  
 아침마다 칸반 보드 미팅한 내용.  
