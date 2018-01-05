@@ -78,8 +78,25 @@ For this technical engagement, we defined requirements:
 
 ## Project Planning & Management
 
-dddd
-### Commit 테스트를 한다.
+초기 고객 미팅에서부터 핵페스트 완료까지 1.5개월 소요. 실제 핵페스트는 5일간 진행. 
+
+<Cadence 이미지 삽입>
+
+3개 Epic에 11개의 User Story
+
+<VSTS 이미지 삽입>
+
+Collaboration Tool로 Slack과 VSTS를 사용. VSTS의 경우 Build 자동화 등의 요구 수용이 힘들고 고객사에서 익숙한 환경이 아니라 백로그 관리 용도로 제한적으로 사용. 이후 AI Serving Layer의 완벽한 배포 자동화를 위해서라도 VSTS는 사용되어야 해서 활용도가 다소 떨어지더라도 조금이라도 포스트잇을 이용한 칸반보드를 적극 활용했음
+
+<Slack 이미지>
+
+매일 오전 15~20분간의 Stand-up 미팅을 통해 작업 진척 상황과 Lessons & Learn을 공유
+
+<Standup 미팅 사진>
+
+초기 요구사항 정리 후 실제 핵페스트를 준비하면서 기간 대비 Scope이 너무 Challengeable해서 최종 Scope에서 Sharding DB 마이그레이션은 다음 스프린트로 넘기는 걸로 핵페스트 이전에 협의하였다. 
+
+기존 개발 환경에서 AI Serving Layer은 GPU기반의 DSVM에서 가동되고 있었고 실제 Production 환경도 GPU 자원을 사용하기를 원했다. 이 경우 아키텍쳐ㅇㅇㅇㅇ
 
 VSTS를 통해서 Agile 관리한 내용.  
 아침마다 칸반 보드 미팅한 내용.  
