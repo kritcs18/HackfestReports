@@ -68,7 +68,7 @@ For this technical engagement, we defined requirements:
 - 서버리스 아키텍처가 적용 가능한 서비스 Layer에는 그를 적용한다.
 - 모든 요청/응답 데이터는 로그로 남겨서 차트 등을 통해서 가시적으로 살펴볼 수 있어야 한다.
 
-## Source Repos
+## Sources Repository
 
 고객사의 요청에 의해서 이번 핵페스트에서는 GitHub Private Repo를 사용한다. 각각의 서비스 Layer별로 전용 Repo를 구성하였으며 구성된 Repository의 모습은 다음과 같다.
 
