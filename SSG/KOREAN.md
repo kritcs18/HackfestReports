@@ -55,7 +55,7 @@ IaaS 기반의 아키텍처는 추후 운영 규모가 커질 경우, 자연스�
 
 ![images/as-is-arch.png](images/as-is-arch.png)
 
-## Requirements and Goals
+## Requirements and goals (내용 수정해야 함)
 
 For this technical engagement, we defined requirements:
 
