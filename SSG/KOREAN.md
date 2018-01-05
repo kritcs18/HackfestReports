@@ -76,6 +76,7 @@ For this technical engagement, we defined requirements:
 
 ## Project Planning & Management
 
+### 최훈, 최훈 이사가 작성할 예정!!!
 ### Commit 테스트를 한다.
 
 VSTS를 통해서 Agile 관리한 내용.  
@@ -398,7 +399,8 @@ Hackfest
 
 
 ## Business impact
-이하 내용 추가
+
+### 최훈, 최훈 이사가 작성할 예정!!!
 
 ## Partner technical engagement feedback
 
@@ -441,7 +443,3 @@ AI Model Trainig 서비스를 Azure Batch AI에서 운영하는 것은 매우 �
 AI Inference Layer에 Container 기술을 접목시킨 것도 매우 좋은 시도였다. 이번 핵페스트를 준비하면서 막연하게 GPU에 의존했던 기존 방식들이 과연 의미가 있는지를 새로운 시각으로 점검해 볼 수 있었다. 그리고, 여러 검증을 통해서 비용적으로도, 기술적으로도 개선된 아키텍처를 확보할 수 있었다. 특히, Azure Web App에 컨테이너 기술을 접목하는 구성은 상당히 효과적이었다. 
 
 ChatBot App을 완전히 서버리스 아키텍처로 마이그레이션한 것도 큰 성과였다. 개발자는 이제 개별 로직에만 집중할 수 있게 되었으며, 다양한 외부 서비스들(상태 서버, 데이터베이스, 큐 등)을 이용하는 부분에 있어 적은 노력으로 큰 효과를 누릴 수 있게 되었다. 이렇게 기술에 대한 신뢰가 쌓임으로써 고객은 차기 버전에서는 Microsoft Bot Framework를 활용하는 것도 고려하고 있다.
-
-## Future possibilities
-
-이하 내용 추가
