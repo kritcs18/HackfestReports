@@ -397,7 +397,7 @@ use MicrosoftAzure\Storage\Common\ServiceException;
 
 #### Issues and Workaround
 
-다른 Layer와 마찬가지로 Admin 관리 웹사이트인 이 Layer도 GitHub의 Private Repository와 통합되어야 하고 Web App의 Deployment Option 기능을 사용해서 자동 배포가 되도록 구성해야 했다. 하지만, 앞서 언급했던 것과 마찬가지로 현재 Azure  App Servuce는 Private Repository와 통합하기 위해서는 다소 우회적인 방법을 사용해야 한다. 이 이슈는 다음 링크를 참고하자.
+다른 Layer와 마찬가지로 Admin 관리 웹사이트인 이 Layer도 GitHub의 Private Repository와 통합되어야 하고 Web App의 Deployment Option 기능을 사용해서 자동 배포가 되도록 구성해야 했다. 하지만, 앞서 언급했던 것과 마찬가지로 현재 Azure App Service는 Private Repository와 통합하기 위해서는 다소 우회적인 방법을 사용해야 한다. 이 이슈는 다음 링크를 참고하자.
 
 Refer to https://nsamteladze.wordpress.com/2015/07/19/continuous-deployment-from-github-enterprise-repository-to-azure-web-app/
 
@@ -425,7 +425,7 @@ Hackfest
 
 다음은 이번 핵페스트에 참여한 SSG.COM 개발자들의 피드백이다.
 
-### 주의! 이는 가상으로 적어놓은 예시 피드백입니다. 실제 고객의 피드백이 아닙니다.
+### 이는 아직 고객의 컨폼을 받지 않은 대략적인 아이디어 예시 피드백입니다. 실제 고객의 피드백이 아닙니다.
 
 > 이번 핵페스트를 통해서 다양한 기술적인 실험을 할 수 있어서 만족스러웠습니다. 원래 계획했던 실험은 Multi Host, Multi GPU Job을 Tensorflow + Keras 조합을 사용해서 Azure Batch AI 에서 운영하려는 것이었지만, Horovod와 CNTK를 활용할 경우 더 효과적일수 있다는 조언에 그 부분까지 모두 핵페스트 기간에 실험하느라 밤이 깊어가는 줄도 몰랐던 것 같습니다. 이번 핵페스트를 통해서 최종 아키텍처를 제대로 검증하고 결정할 수 있었기에 매우 만족스럽습니다.
 >
