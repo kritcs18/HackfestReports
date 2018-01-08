@@ -203,7 +203,7 @@ Push History via Container WebHook
 
 #### Considering the Region
 
-게이트웨이의 역할이자, Chatbot App에 해당하는 Web API Gateway(chatbot) Layer는 한국에서 서비스되고 있는 반면, AI Serving/Inference Layer(AI service like LUIS)는 Japan region에서 Web app for Container로 서비스하고 있다. 그 이유는 한국에 아직 Azure Container Registry이 지원되지 않기 때문이다(Azure Container Registry과 Web App for Container는 동일 Region에 있어야 비용 및 배포 비용이 절약된다). 만일, ACR(Azure Container Registry)을 한국에 생성할 수 있다면 더욱 빠른 Latency를 얻을 수 있을 것이다. 고객은 추후 한국에서 ACR이 서비스 된다면, 현재 AI Serving Layer와 관계된 모든 서비스(ACR, Web App for Container, Blob Storage for H5 model files etc)를 한국으로 옮길 계획이다.
+게이트웨이의 역할이자, Chatbot App에 해당하는 Web API Gateway(chatbot) Layer는 한국에서 서비스되고 있는 반면, AI Serving/Inference Layer(AI service like LUIS)는 Japan region에서 Web app for Container로 서비스하고 있다. 그 이유는 한국에 아직 Azure Container Registry이 지원되지 않기 때문이다(Azure Container Registry과 Web App for Container는 동일 Region에 있어야 배포 비용 및 속도에 효율적이다). 만일, ACR(Azure Container Registry)을 한국에 생성할 수 있다면 더욱 빠른 Latency를 얻을 수 있을 것이다. 고객은 추후 한국에서 ACR이 서비스 된다면, 현재 AI Serving Layer와 관계된 모든 서비스(ACR, Web App for Container, Blob Storage for H5 model files etc)를 한국으로 옮길 계획이다.
 
 #### Issues and Workaround
 
@@ -385,7 +385,11 @@ use MicrosoftAzure\Storage\Common\ServiceException;
 
 그리고, 실제 운영중인 모습은 다음과 같다.
 
-<관리자 웹 사이트 캡춰 화면 필요>
+![관리자 UI](images/adminweb_ui01.png)
+
+![관리자 UI](images/adminweb_ui02.png)
+
+![관리자 UI](images/adminweb_ui03.png)
 
 고객은 Migration 후에 다양한 테스트를 수행하여 문제가 발생할 가능성이 있는 부분을 보완해나가고 있으며 현재까지도 계속해서 기능을 추가 및 개선해 나가고 있다. 다음은 최근에도 코드 커밋이 수행되고 있는 Repo의 모습이다.
 
