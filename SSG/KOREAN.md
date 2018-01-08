@@ -450,7 +450,8 @@ Hackfest
 
     심지어는, 이러한 내용을 단계별로 정리하여 다음과 같은 제목으로 개발자 커뮤니티와 함께 Hands-On Lab을 진행하기도 하였다.
 
-    HOL : Deep Learning with Multi-GPU based on Azure Batch AI  
+    HOL : Deep Learning with Multi-GPU based on Azure Batch AI   
+    FB Link : https://www.facebook.com/groups/krazure/permalink/1840871035955057/    
     Link : https://onoffmix.com/event/123844
 
 - 핵페스트 이후, 관리자 웹 사이트는 하루에도 여러번 Commit 되고 지속적으로 Web App에 배포가 이루어지면서 기능적으로 개선되어 나가고 있다. 
