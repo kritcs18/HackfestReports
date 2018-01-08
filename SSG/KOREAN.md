@@ -321,7 +321,7 @@ Refer to https://nsamteladze.wordpress.com/2015/07/19/continuous-deployment-from
 
 ----------------------
 
-#### As-IS
+#### As-Is
 
 Admin Web Site는 관리자 전용 웹 사이트이다. 관리자는 Admin 웹사이트에서 다양한 Utterance를 입력하고, 각종 질의 관련 Rule을 등록하는 등 Intent, Entity와 연계된 다양한 관리 기능을 사용할 수 있다. 파악된 Intent에 따라 적절한 응답 메세지를 조합하거나, 개별 상황에 따른 응답 메시지를 관리하는 기능도 제공하고 있다. 또한, 관리자는 On-Demand 방식으로 Model Training을 즉각 수행하도록 명령을 실행할 수도 있다. 관리자 웹 사이트는 PHP로 개발되었으며, 다양한 CSS 및 Bootstrap UI들을 사용하여 화려한 UI를 제공하고 있다. 현재는 Azure VM에서 호스팅되고 있으며, 수동으로 소스 배포 및 관리되고 있다.
 
