@@ -89,8 +89,7 @@ IaaS 기반의 아키텍처는 추후 운영 규모가 커질 경우, 자연스�
 
 이번 SSG핵페스트의 백로그는 3개 Epic과 11개의 User Story, 28개 하위 태스크로 구성되었으며. 백로그 관리 도구로는 VSTS (Visual Studio Team Services)를 사용했다. VSTS의 경우 그 자체로 CI/CD 기능을 제공하고 DevOps 효율성을 향상시키는데 좋은 도구이지만 이번 Hackfest에서 Build/Release 자동화는 범위 밖에 있어 백로그 관리 용도로 제한적으로 사용했다. VSTS와 더불어 Hackfest에 참여한 개발자간의 협업도구로 Slack을 사용했다. 
 
- ![VSTS Kanban](images/SSG_VSTS.png) | ![Slack Channel](images/SSG_Slack.png)
-
+![VSTS Kanban](images/SSG_VSTS.png) | ![Slack Channel](images/SSG_Slack.png)
 
 Hackfest 기간 동안 마이크로소프트와 신세계 프로젝트 개발자들은 매일 오전 15~20분간의 스탠드업(Stand-up) 미팅을 통해 작업 진척 상황과 Lessons & Learn을 서로 공유했다. 이 때 포스트잇을 사용한 칸반보드 (Kanban Board)를 사용했다. VSTS 또한 칸반보드 스타일의 작업 현황판을 제공하지만 작업 내용이 명시된 포스트잇을 개발자들이 각각 작업 진척 상황을 옮기는 행위가 제공하는 동기부여 효과를 위해 물리적 칸반보드를 병행해서 사용하였다.
 
