@@ -87,22 +87,15 @@ IaaS 기반의 아키텍처는 추후 운영 규모가 커질 경우, 자연스�
 
  ![Project Milestone](images/SSG_Milestone.png)
 
-이번 SSG핵페스트의 백로그는 3개 Epic과 11개의 User Story, 28개 하위 태스크로 구성되었으며. 백로그 관리 도구로는 VSTS (Virual Studio Team Services)를 사용했다. VSTS의 경우 그 자체로 CI/CD 기능을 제공하고 DevOps 효율성을 향상시키는데 좋은 도구이지만 이번 Hackfest에서 Build/Release 자동화는 범위 밖에 있어 백로그 관리 용도로 제한적으로 사용했다. 
+이번 SSG핵페스트의 백로그는 3개 Epic과 11개의 User Story, 28개 하위 태스크로 구성되었으며. 백로그 관리 도구로는 VSTS (Visual Studio Team Services)를 사용했다. VSTS의 경우 그 자체로 CI/CD 기능을 제공하고 DevOps 효율성을 향상시키는데 좋은 도구이지만 이번 Hackfest에서 Build/Release 자동화는 범위 밖에 있어 백로그 관리 용도로 제한적으로 사용했다. VSTS와 더불어 Hackfest에 참여한 개발자간의 협업도구로 Slack을 사용했다. 
 
- ![VSTS Kanban](images/SSG_VSTS.png)
+ ![VSTS Kanban](images/SSG_VSTS.png) | ![Slack Channel](images/SSG_Slack.png)
 
-VSTS와 더불어 Collaboration Tool로 Slack을 사용했다. VSTS의 경우 Build 자동화 등의 요구 수용이 힘들고 고객사에서 익숙한 환경이 아니라 백로그 관리 용도로 제한적으로 사용. 이후 AI Serving Layer의 완벽한 배포 자동화를 위해서라도 VSTS는 사용되어야 해서 활용도가 다소 떨어지더라도 조금이라도 포스트잇을 이용한 칸반보드를 적극 활용했음
 
- ![Slack Channel](images/SSG_Slack.png)
-
-매일 오전 15~20분간의 Stand-up 미팅을 통해 작업 진척 상황과 Lessons & Learn을 공유
+Hackfest 기간 동안 마이크로소프트와 신세계 프로젝트 개발자들은 매일 오전 15~20분간의 스탠드업(Stand-up) 미팅을 통해 작업 진척 상황과 Lessons & Learn을 서로 공유했다. 이 때 포스트잇을 사용한 칸반보드 (Kanban Board)를 사용했다. VSTS 또한 칸반보드 스타일의 작업 현황판을 제공하지만 작업 내용이 명시된 포스트잇을 개발자들이 각각 작업 진척 상황을 옮기는 행위가 제공하는 동기부여 효과를 위해 물리적 칸반보드를 병행해서 사용하였다.
 
 ![Kanban Board](photos/hack_07.jpg) | ![Standup Meeting](photos/hack_03.jpg)
 
-
-초기 요구사항 정리 후 실제 핵페스트를 준비하면서 기간 대비 Scope이 너무 Challengeable해서 최종 Scope에서 Sharding DB 마이그레이션은 다음 스프린트로 넘기는 걸로 핵페스트 이전에 협의하였다. 
-
-기존 개발 환경에서 AI Inference Layer는 GPU기반의 DSVM에서 가동되고 있었고 실제 Production 환경도 GPU 자원을 사용하기를 원했다. 이 경우 Azure Web App이 아닌 ACS와 같은 다른 솔루션을 적용해야하기도 하고, 고객도 이 부분에 대해 명확히 GPU를 사용해야한다는 확신이 없는 상황이었다. 실제 Hack에 영향을 줄 수 있는 불확실성을 최소화하기 위해 핵페스트 이전에 CPU와 GPU VM 상에서 성능 비교 테스트를 제안했고 자체적으로 벤치마킹테스트를 수행해서 AI Inference 관련 워크로드는 오히려 CPU가 GPU 대비하여 더 나은 성능을 제공한다는 의미 있는 결과를 도출했고 프로젝트의 범위도 명확해졌다.
 
 
 ## Technical Delivery 
