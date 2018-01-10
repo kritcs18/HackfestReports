@@ -418,7 +418,7 @@ Hackfest
 
 Video : SSG.COM Hackfest
 
-[![SSG.COM Hackfest](images/Mpng.png)](https://www.youtube.com/watch?v=X7T442zwalE&feature=youtu.be "SSG.COM Hackfes")
+[![SSG.COM Hackfest](images/Mpng.png)](https://www.youtube.com/watch?v=X7T442zwalE&feature=youtu.be)
 
 
 ## Business impact
