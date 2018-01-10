@@ -416,6 +416,10 @@ Hackfest
 ![9](photos/hack_05.jpg) | ![10](photos/hack_08.jpg)
 ![9](photos/hack_07.jpg) | ![10](photos/hack_06.jpg)
 
+Video : SSG.COM Hackfest
+
+[![SSG.COM Hackfest](images/Mpng.png)](https://www.youtube.com/watch?v=X7T442zwalE&feature=youtu.be "SSG.COM Hackfes")
+
 
 ## Business impact
 
