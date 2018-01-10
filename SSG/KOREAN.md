@@ -41,7 +41,12 @@ Hackfest : 2017년 12월 18일 ~ 22일 / 5 일간
 
 ## Partner profile (내용 수정해야 함)
 
-Shinsegae is The largest retailer in South Korea with E-Mart(160 stores across the country), Shinsegae department stores, TRADERS as their subsidiary. Also, SSG.COM, integrated e-commerce service for their subsidiaries’ e-commerce site, growing fast ($800M revenue, 37.6% YoY growth in CY16)  …
+신세계 그룹은 대한민국을 대표하는 가장 큰 소매업자이다. 신세계 그룹 산하의 계열사들을 통해 소매, 패션, 호텔업, 식음료, 인프라, 다목적 쇼핑몰 등 다양한 사업을 영위하고 있다.
+신세계 그룹은 그 동안 이마트, 신세계백화점, 트레이더스, 신세계TV쇼핑에서 각자 운영되던 온라인 쇼핑몰을 통합한 SSG.COM이라는 통합 온라인 쇼핑몰 서비스를 2014년에 런칭했다. SSG.COM 서비스는 매년 30%가 넘는 초고속 성장을 하고 있으며 고객센터를 통해 하루에 10,000건에 달하는 고객 서비스 콜이 유입되고 있다. 
+
+고객센터 운영비용 절감과 고객들에게 더 좋은 사용자 경험을 제공하기 위해 오픈소스 기술 기반의 인공지능 챗봇 서비스 개발 프로젝트를 2017년 중반에 착수했으며 2018년 상반기에 정식 출시를 계획하고 있다. 
+
+또한 경쟁사들이 자사의 e-commerce 서비스에 공격적으로 AI 기술을 접목시키고 있는 시장 상황에 대응하기 위해 이후 이 AI 챗봇 서비스를 통해 고객서비스 업무 이외에도 다양한 형태의 AI 기술을 추가하여 서비스를 제공할 예정이다.
 
 ## Problem statement
 
