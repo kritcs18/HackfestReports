@@ -30,7 +30,7 @@ SSG.COM의 tb-be 아키텍처와 핵페스트에서 사용된 기술들은 다�
   - 서인석 : 개발자 / PHP, Web App
 - Microsoft 
   - [김태영](https://github.com/taeyo) : TE / Architecture, Serverless, WebApp, Container, Code Migration etc
-  - 최훈: PM / Project Management
+  - 최훈 : PM / Project Management
   - 크리스 올드 : TE Lead / Batch AI, Deep Learning, CNTK etc
   - 크릿 카무토 : TE / Batch AI, Deep Learning, CNTK etc
 
@@ -57,9 +57,9 @@ IaaS 기반의 아키텍처는 추후 운영 규모가 커질 경우, 자연스�
 
 ![images/as-is-arch.png](images/as-is-arch.png)
 
-## Requirements and goals (내용 수정해야 함)
+## Requirements and goals
 
-For this technical engagement, we defined requirements:
+이번 핵페스트를 진행하면서 사전에 정의한 요구사항과 목표는 다음과 같다.
 
 - 각각의 서비스들은 가능하다면 PaaS 환경에서 운영하도록 설계한다.
 - 유연하고(flexible) 확장가능한(scalable) Architecture로 설계한다.
