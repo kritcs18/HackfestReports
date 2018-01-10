@@ -23,7 +23,7 @@ SSG.COM의 tb-be 아키텍처와 핵페스트에서 사용된 기술들은 다�
 팀은 SSG AI 데이터 플랫폼 팀과 Microsoft CSE의 엔지니어들로 구성되었다.
 
 - SSG.COM
-  - [김훈동](http://hoondongkim.blogspot.jp/) : 수석 개발자 / Deep Learnig, Batch AI
+  - [김훈동](http://hoondongkim.blogspot.kr/) : 수석 개발자 / Deep Learnig, Batch AI
   - 류성 : 개발자 / Deep Learnig, Serverless
   - 서동훈 : 개발자 / Docker, Container
   - 전영규 : 개발자 / Python, Docker, Container
@@ -41,7 +41,7 @@ Hackfest : 2017년 12월 18일 ~ 22일 / 5 일간
 
 ## Partner profile (내용 수정해야 함)
 
-신세계 그룹은 대한민국을 대표하는 가장 큰 소매업자이다. 신세계 그룹 산하의 계열사들을 통해 소매, 패션, 호텔업, 식음료, 인프라, 다목적 쇼핑몰 등 다양한 사업을 영위하고 있다.
+신세계 그룹은 대한민국을 대표하는 가장 큰 종합소매사업자이다. 신세계 그룹 산하의 계열사들을 통해 소매, 패션, 호텔업, 식음료, 인프라, 다목적 쇼핑몰 등 다양한 사업을 영위하고 있다.
 신세계 그룹은 그 동안 이마트, 신세계백화점, 트레이더스, 신세계TV쇼핑에서 각자 운영되던 온라인 쇼핑몰을 통합한 SSG.COM이라는 통합 온라인 쇼핑몰 서비스를 2014년에 런칭했다. SSG.COM 서비스는 매년 30%가 넘는 초고속 성장을 하고 있으며 고객센터를 통해 하루에 10,000건에 달하는 고객 서비스 콜이 유입되고 있다. 
 
 고객센터 운영비용 절감과 고객들에게 더 좋은 사용자 경험을 제공하기 위해 오픈소스 기술 기반의 인공지능 챗봇 서비스 개발 프로젝트를 2017년 중반에 착수했으며 2018년 상반기에 정식 출시를 계획하고 있다. 
@@ -83,15 +83,15 @@ IaaS 기반의 아키텍처는 추후 운영 규모가 커질 경우, 자연스�
 
 ## Project Planning & Management
 
-초기 고객 미팅에서부터 핵페스트 완료까지 1.5개월 소요. 실제 핵페스트는 5일간 진행. 
+초기 고객 미팅에서부터 핵페스트 완료까지 1.5개월이 소요되었다. Envisioning 워크샵 이후 확보된 신세계 프로젝트팀의 요구사항과 1차 To-Be 아키텍쳐를 가지고 Microsoft CSE 엔지니어 커뮤니티인 Technical Pillar와 컨퍼런스 콜을 통해 아키텍쳐를 리뷰하고 논의하는 Game Plan 리뷰과정을 거쳤다. 이 과정을 통해 최종 아키텍쳐와 사용 기술에 대한 안을 확정했다. 
 
  ![Project Milestone](images/SSG_Milestone.png)
 
-3개 Epic에 11개의 User Story
+이번 SSG핵페스트의 백로그는 3개 Epic과 11개의 User Story, 28개 하위 태스크로 구성되었으며. 백로그 관리 도구로는 VSTS (Virual Studio Team Services)를 사용했다. VSTS의 경우 그 자체로 CI/CD 기능을 제공하고 DevOps 효율성을 향상시키는데 좋은 도구이지만 이번 Hackfest에서 Build/Release 자동화는 범위 밖에 있어 백로그 관리 용도로 제한적으로 사용했다. 
 
  ![VSTS Kanban](images/SSG_VSTS.png)
 
-Collaboration Tool로 Slack과 VSTS를 사용. VSTS의 경우 Build 자동화 등의 요구 수용이 힘들고 고객사에서 익숙한 환경이 아니라 백로그 관리 용도로 제한적으로 사용. 이후 AI Serving Layer의 완벽한 배포 자동화를 위해서라도 VSTS는 사용되어야 해서 활용도가 다소 떨어지더라도 조금이라도 포스트잇을 이용한 칸반보드를 적극 활용했음
+VSTS와 더불어 Collaboration Tool로 Slack을 사용했다. VSTS의 경우 Build 자동화 등의 요구 수용이 힘들고 고객사에서 익숙한 환경이 아니라 백로그 관리 용도로 제한적으로 사용. 이후 AI Serving Layer의 완벽한 배포 자동화를 위해서라도 VSTS는 사용되어야 해서 활용도가 다소 떨어지더라도 조금이라도 포스트잇을 이용한 칸반보드를 적극 활용했음
 
  ![Slack Channel](images/SSG_Slack.png)
 
