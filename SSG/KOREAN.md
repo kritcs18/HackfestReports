@@ -4,40 +4,40 @@ SSG.COM의 AI Data Platform 팀은 다양한 오픈소스를 사용하여 자체
 
 ## Key technologies
 
-The technologies outlined and included in this solution are:
+SSG.COM의 tb-be 아키텍처와 핵페스트에서 사용된 기술들은 다음과 같다.
 
-- [Azure Batch and Batch AI](https://azure.microsoft.com/en-us/services/batch-ai/) to train deep learning model
-- [Azure Logic App](https://azure.microsoft.com/en-us/services/logic-apps/) to notify changes of trained model
-- [Web App for Container on Linux](https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-custom-docker-image) to host AI inference Service
-- Private container registry using [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/).
-- [Continuous Deployment](https://docs.microsoft.com/en-us/azure/app-service/app-service-continuous-deployment) using [Container WebHook](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-webhook) from Azure Container Registry to Web App for Container  
-- [Deployment Slot](https://docs.microsoft.com/en-us/azure/app-service/web-sites-staged-publishing) for staging/production environments swap in Web App for Container
-- [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) to host API Gateway(customer's Chatbot) with Serverless Architecture
-- Continuous Deployment with [Github Private Repository](https://github.com/)
-- [Cosmos DB (SQL)](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction) for managing state of end users
-- [Azure Storage Queue](https://azure.microsoft.com/en-us/services/storage/queues/) for Reactive communication between Azure Functions
-- [Application Insight](https://azure.microsoft.com/en-us/services/application-insights/) to monitor performance and usage of API gateway
+- [Azure Batch and Batch AI](https://azure.microsoft.com/en-us/services/batch-ai/) : 딥러닝 모델 트레이닝을 위한 운영 환경
+- [Azure Logic App](https://azure.microsoft.com/en-us/services/logic-apps/) : 트레이닝 모델이 변경되었음을 관리자에게 통지
+- [Web App for Container on Linux](https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-custom-docker-image) :  AI inference 서비스의 호스팅 환경
+- [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/) : 사설 도커 이미지 저장소
+- [Container WebHook](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-webhook)을 사용하여 Azure Container Registry에서 Web App for Container로 [Continuous Deployment](https://docs.microsoft.com/en-us/azure/app-service/app-service-continuous-deployment) 적용
+- [Deployment Slot](https://docs.microsoft.com/en-us/azure/app-service/web-sites-staged-publishing) : Web App for Container의 스테이징/운영 간에 전환(Swap)을 위해서 배포 슬롯을 사용
+- [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) : 고객의 API Gateway(Chatbot)을 위한 서버리스 플랫폼
+- Continuous Deployment를 위해 [Github Private Repository](https://github.com/) 사용
+- [Cosmos DB (SQL)](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction) : 채팅 사용자의 상태 저장소
+- [Azure Storage Queue](https://azure.microsoft.com/en-us/services/storage/queues/) : Azure Function 간 통신 매개
+- [Application Insight](https://azure.microsoft.com/en-us/services/application-insights/) : 게이트웨이의 성능과 사용 통계를 모니터링
 
 ## Core Team
 
-The team was comprised of members from SSG AI team and Microsoft CSE:
+팀은 SSG AI 데이터 플랫폼 팀과 Microsoft CSE의 엔지니어들로 구성되었다.
 
 - SSG.COM
-  - [Hoondong Kim](http://hoondongkim.blogspot.jp/) : Chief Lead / Deep Learnig, Batch AI
-  - Sung Ryu : Developer / Deep Learnig, Serverless
-  - Donghoon Seo : Developer / Docker, Container
-  - Younggyu Jeon : Developer / Python, Docker, Container
-  - Insuk Seo : Developer / PHP, Web App
+  - [김훈동](http://hoondongkim.blogspot.jp/) : 수석 개발자 / Deep Learnig, Batch AI
+  - 류성 : 개발자 / Deep Learnig, Serverless
+  - 서동훈 : 개발자 / Docker, Container
+  - 전영규 : 개발자 / Python, Docker, Container
+  - 서인석 : 개발자 / PHP, Web App
 - Microsoft 
-  - [Taeyoung Kim](https://github.com/taeyo) : TE / Architecture, Serverless, WebApp, Container, Code Migration etc
-  - Hun Choi : PM / Project Management
-  - Chris Auld : TE Manager / Batch AI, Deep Learning, CNTK etc
-  - Krit kamuto : TE / Batch AI, Deep Learning, CNTK etc
+  - [김태영](https://github.com/taeyo) : TE / Architecture, Serverless, WebApp, Container, Code Migration etc
+  - 최훈: PM / Project Management
+  - 크리스 올드 : TE Lead / Batch AI, Deep Learning, CNTK etc
+  - 크릿 카무토 : TE / Batch AI, Deep Learning, CNTK etc
 
 ## Hackfest period
 
-Envisioning Workshop : Dec 1 2017  
-Hackfest : Dec 18 ~ 22 2017 / 5 days  
+사전 워크샵: 2017년 12월 1일    
+Hackfest : 2017년 12월 18일 ~ 22일 / 5 일간    
 
 ## Partner profile (내용 수정해야 함)
 
@@ -435,7 +435,7 @@ Video : SSG.COM Hackfest
 >
 > 김훈동 Chief Lead, SSG AI Data Platform
 
-> 저는 이번 핵페스트에서 AI Model Traning Layer를 Sub로 참여하였고, API Gateway Layer는 Main으로 맡아서 진행했습니다. 특히, 인상적인 부분은 김태영 부장과 함께 API Gateway의 모든 기존의 Python 로직들을 분해해서 서버리스 기반으로 전면 재구성을 한 것입니다. 핵페스트 기간 내에 코드 마이그레이션까지 가능할 것이라고는 생각하지 못했는데, 실제로 끝내게 되다니 꽤나 놀라운 경험이었습니다. 덕분에 Azure에서 제공하는 서버리스 기술이 얼마나 편리한 지도 직접적으로 느껴볼 수 있었습니다. 기회가 있다면 한번 더 핵페스트에 참여해보고 싶습니다.
+> 저는 이번 핵페스트에서 AI Model Traning Layer를 Sub로 참여하였고, API Gateway Layer는 Main으로 맡아서 진행했습니다. 특히, 인상적인 부분은 API Gateway의 모든 기존의 Python 로직들을 분해해서 서버리스 기반으로 전면 재구성을 한 것입니다. 핵페스트 기간 내에 코드 마이그레이션까지 가능할 것이라고는 생각하지 못했는데, 실제로 끝내게 되다니 꽤나 놀라운 경험이었습니다. 덕분에 Azure에서 제공하는 서버리스 기술이 얼마나 편리한 지도 직접적으로 느껴볼 수 있었습니다. 기회가 있다면 한번 더 핵페스트에 참여해보고 싶습니다.
 >
 > 유성 dev,  SSG AI Data Platform
 
