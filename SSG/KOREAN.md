@@ -418,9 +418,9 @@ Video : SSG.COM Hackfest
 [![SSG.COM Hackfest](images/MPNG.PNG)](https://www.youtube.com/watch?v=X7T442zwalE&feature=youtu.be)
 
 
-## Business impact
-
-(Draft) SSG.COM과 경쟁관계에 있는 많은 e-Commerce / 온라인 쇼핑몰 업체들은 이미 적극적으로 AI 기술을 자사의 서비스에 접목시키고 있다. 이에 대응하기 위해 신세계도 AI 기술에 많은 투자를 하고 있고 AI Bot 서비스를 시작으로 많은 AI 관련 서비스들이 출시될 계획에 있다. 신세계는 Serverless / PaaS 기반의 이번 플랫폼을 완성도 높게 구현함으로써 신규 서비스에 대한 Time-to-Market을 획기적으로 단축시킬 수 있는 경쟁력 있는 AI Bot 플랫폼을 갖추게 되었다. 
+## Business impact 
+(Customer Profile에서 이미 언급한 내용이 중복됨. 수정 필요)
+SSG.COM과 경쟁관계에 있는 많은 e-Commerce / 온라인 쇼핑몰 업체들은 이미 적극적으로 AI 기술을 자사의 서비스에 접목시키고 있다. 이에 대응하기 위해 신세계도 AI 기술에 많은 투자를 하고 있고 AI Bot 서비스를 시작으로 많은 AI 관련 서비스들이 출시될 계획에 있다. 신세계는 Serverless / PaaS 기반의 이번 플랫폼을 완성도 높게 구현함으로써 신규 서비스에 대한 Time-to-Market을 획기적으로 단축시킬 수 있는 경쟁력 있는 AI Bot 플랫폼을 갖추게 되었다. 
 
 ## Partner technical engagement feedback
 
