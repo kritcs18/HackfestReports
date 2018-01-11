@@ -1,4 +1,6 @@
-# SSG AI Chatbot with Deep Learning Hack
+# (DRAFT) SSG AI Chatbot with Deep Learning 
+
+## 아직 완료되지 않은 글이기에 외부 공유는 금지합니다. 
 
 SSG.COM의 AI Data Platform 팀은 다양한 오픈소스를 사용하여 자체 AI ChatBot을 개발하여 서비스하고 있다. 하지만, 현재의 아키텍처가 효과적인 지에 대해 의구심이 있었고 Microsoft와 함께 더 나은 아키텍처를 얻어내기 위한 여정을 떠나고자 하였다. Deep Learning부터 Serverless까지 가능한 한 필요한 모든 영역을 이번 핵페스트를 통해서 검증한다.
 
