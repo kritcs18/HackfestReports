@@ -417,7 +417,7 @@ Hackfest
 
 Video : SSG.COM Hackfest
 
-[![SSG.COM Hackfest](images/MPNG.PNG)](https://www.youtube.com/watch?v=W-XrKOHq-SA&feature=youtu.be)
+[![SSG.COM Hackfest](images/MPNG.PNG)](https://www.youtube.com/watch?v=Red-D5ChNzk)
 
 
 
