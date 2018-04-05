@@ -32,8 +32,8 @@ SSG.COM의 tb-be 아키텍처와 핵페스트에서 사용된 기술들은 다�
   - 서인석 : 개발자 / PHP, Web App
 - Microsoft 
   - [김태영](https://github.com/taeyo) : TE / Architecture, Serverless, WebApp, Container, Code Migration etc
-  - 최훈 : PM / Project Management
-  - 크리스 올드 : TE Lead / Batch AI, Deep Learning, CNTK etc
+  - [최훈](https://github.com/Ogamja) : PM / Project Management
+  - [크리스 올드](https://github.com/cauldnz) : TE Lead / Batch AI, Deep Learning, CNTK etc
   - 크릿 카무토 : TE / Batch AI, Deep Learning, CNTK etc
 
 ## Hackfest period
@@ -41,7 +41,7 @@ SSG.COM의 tb-be 아키텍처와 핵페스트에서 사용된 기술들은 다�
 사전 워크샵: 2017년 12월 1일    
 Hackfest : 2017년 12월 18일 ~ 22일 / 5 일간    
 
-## Partner profile (내용 수정해야 함)
+## Partner profile 
 
 신세계 그룹은 대한민국을 대표하는 가장 큰 종합소매사업자이다. 신세계 그룹 산하의 계열사들을 통해 소매, 패션, 호텔업, 식음료, 인프라, 다목적 쇼핑몰 등 다양한 사업을 영위하고 있다.
 신세계 그룹은 그 동안 이마트, 신세계백화점, 트레이더스, 신세계TV쇼핑에서 각자 운영되던 온라인 쇼핑몰을 통합한 SSG.COM이라는 통합 온라인 쇼핑몰 서비스를 2014년에 런칭했다. SSG.COM 서비스는 매년 30%가 넘는 초고속 성장을 하고 있으며 고객센터를 통해 하루에 10,000건에 달하는 고객 서비스 콜이 유입되고 있다. 
