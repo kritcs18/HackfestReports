@@ -128,10 +128,57 @@ Hackfest 기간 동안 마이크로소프트와 신세계 프로젝트 개발자
 
 ### **Layer 1 : AI Model Traininig Layer**
 
-----------------------
-need to fill
+신세계는 기존 LSTM (Long-Short-Term-Model) 기반의 RNN 모델을 가지고 핵페스트를 했다. 이 모델은 효과적이기는 했으나 소요되는 시간과 효율성이 문제가 되었다. 고객은 다른 네트워크 아키텍쳐와 하이퍼파라미터를 가지고 실험하는 것 뿐만 아니라  모델을  좀 더 빈번하게 재트레이닝시키기 원했다. 
+이번 핵페스트에서의 우리 목표는 기존 모델은 수정하지 않으면서 트레이닝 프로세스를 개선시키기위한 파이프라인을 구축하는 것이었다. 
 
-#### will be filled out by Chris and Krit
+이 새로운 파이프라인에서 구현하고자 하는 주요 사항은 아래와 같다; 
+1. [Azure Low Priority VMs] (https://azure.microsoft.com/en-gb/blog/announcing-public-preview-of-azure-batch-low-priority-vms/)들을 사용하여 비용 절감의 효과를 얻는다.
+2. 멀티 GPU, 궁극적으로는 멀티 GPU를 장착한 멀티 머신에서 모델을 트레이닝 시킨다.
+3. 기존 모델을 최대한 수정없이 그대로 둔다. 신세계 입장에서는 TensorFlow를 사용해서 모델을 계속 실행하고 [Keras](https://keras.io/)로 빌드하는 것이 중요했다.
+
+Azure는 다양한 [GPU 장착 장비 타입](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-gpu)을 제공한다. 우리는 주로 Kepler 기반의 K80 GPU를 장착한 NC 시리즈 머신을 가지고 작업했다. 핵페스트 이후 ND 시리즈가 정식 출시되었는데 이후 이 머신을 사용하는 것이 가장 적합할 것으로 예상된다. ND시리즈는 Pascal 기반의 P40 GPU 유닛을 제공한다. 이 유닛은 대용량 메모리 (24GB)를 가지고 있고 초고성능의 반정밀도 FLOPs를 지원하여 Deep Neural Network 트레이닝에 이상적이다. 근래 추세는 DNN 모델의 트레이닝과 인퍼런싱을 위해 반정밀도 연산을 사용하는 쪽으로 움직이고 있으며 이는 주요 프레임웍들을 통해 지원되고 있다. (*Courbariaux et al. Training deep neral networks with low precision multiplications. 2015.* [arXiv:1412.7024](https://arxiv.org/abs/1412.7024) 참조)
+
+Azure N 시리즈 인스턴스는 최대 4개의 GPU를 지원한다. 멀티 노드에 걸쳐 트레이닝시키기 위해서 고성능의 네트워킹 상호연결이 필요한데, NC24r 혹은 ND24r 인스턴스들은 고성능 [RDMA를 지원하는](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-hpc#rdma-capable-instances) 2차 네트워킹을 장착하고 있다. 고성능 네트워크가 필요한 이유는 DNN 트레이닝에 있어 그 확장성의 제한은 노드들 간의 (실제로는 각각의 GPU간에) 가중치 데이터들의 전송속도에 달려 있기 때문이다. 
+
+#### 아키텍쳐 고려사항
+우리는 파이프라인을 구현하는데 있어 아래와 같은 몇가지 아키텍쳐를 고려했었다. :
+
+	• Hadoop + Spark + BigDL
+	• Hadoop + Spark + TensorFlowOnSpark
+	• Azure Batch AI + TensorFlow + Keras + Horovod
+
+상기 옵션들에 대한 자세한 논의와 각각의 장단점에 대해서는 아래 포스팅을 참고하기 바란다. 
+[Deep Learning Multi Host & Multi GPU Architecture #1 - 고찰 및 구성 with tensorflow, cntk, keras, horovod, Azure Batch AI](http://hoondongkim.blogspot.jp/2018/01/deep-learning-multi-host-multi-gpu.html). (*이 포스팅은 한국어로 작성되어 있으니 영문으로 보기 위해서는 크롬 브라우저에서 번역 기능을 사용하는 것을 추천한다.*)  
+
+신세계팀은 또한 Keras와 Horovod 스케일 아웃 방식의 성능 비교를 각각 수행해서 비교했다. [요약하자면](http://hoondongkim.blogspot.jp/2018/01/deep-learning-multi-host-multi-gpu_11.html), Keras의 weight 공유 방식은 단일 노드의 멀티 GPU 트레이닝에서 더 효율적이었으나 GPU를 최대 8개까지만 사용할 수 있다는 제한이 있었다. Azure N 시리즈 머신에서 최대로 사용할 수 있는 최대 GPU인 4개 GPU에서는 두 접근 방법 간의 델타는 크게 좁혀진다. 
+
+#### Horovod를 사용한 멀티 GPU와 멀티 노드 트레이닝 
+TensorFlow는 [분산 트레이닝](https://www.tensorflow.org/deploy/distributed)을 지원하지만 모델 트레이닝 프로그램에 대한 상당량의 수정이 요구된다. 이번 핵페스트 초기에 우리는 Uber에서 개발한 [Horovod](https://github.com/uber/horovod) 프레임웍으로 실험하는 걸로 결정했다. 
+
+Horovod는 TensorFlow 트레이닝에 MPI 기반의 [작업 분산 패턴](https://www.tensorflow.org/deploy/distributed)을 적용한다. 초기 검토에서부터 이 방식은 상당히 명료한 방식으로 보였다. 또한 이는 이번 핵페스트의 중요한 성공 요소였던 [Keras를 지원](https://github.com/uber/horovod/blob/master/examples/keras_mnist.py)한다.
+
+#### Azure Batch AI를 통한 Simple GPU 클러스터 관리
+우리 팀은 Azure에서 제공되는 [Azure Batch](https://azure.microsoft.com/en-us/services/batch/) HPC 서비스에 대한 많은 경험을 가지고 있었다. 또한 Batch를 통해 저비용의 우선순위가 낮은 VM에 액세스 할 수도 있다. 우리는 Batch 상단의 Docker 기반 레이어인 [Azure Batch Shipyard](https://github.com/Azure/batch-shipyard)를 사용하는 것을 고려했으나 결국 새로 출시된 [Azure Bach AI](https://azure.microsoft.com/en-us/blog/batch-ai-public-preview/) 서비스를 사용하기로 결정했다. 이 서비스는 이번 핵페스트 2달 전에 출시되었기 때문에 실제로 적용해보는건 모든 팀원들이 처음이었으나 Batch와 Batch Shipyard에 대한 기존 전문성과 경험이 이 서비스를 적용하는데 유용하게 작용했다. 
+
+
+Batch AI는 Batch 서비스 내의 클러스터에 자동화된 방식으로 머신을 추가하고 분리할 수 있다. 이 머신들은 VM 또는 Docker 컨테이너 상에서 실행되는 다양한 ML 프레임웍을 사용할 수 있다. 우리는 linuxdsvmubuntu 이미지를 트레이닝에 사용했다. 좀 더 가벼운 이미지와 컨테이너의 조합으로 특히 클러스터를 시작하는데 있어 효율성 향상 효과를 얻을 수 있다. 또한 우리는 머신이 시작되는 동안 apt를 통해 MPI를 설치하고 PyPl로 Horovod를 설치하도록 했고 이는 향후 컨테이너 빌드시에 통합될 수 있을 것이다. 
+
+만약 이 방식을 테스트해보고자 한다면 아래의 구성 작업을 [Batch AI TensorFlow GPU recipe](https://github.com/Azure/BatchAI/tree/master/recipes/TensorFlow/TensorFlow-GPU) 와 함께 사용해볼 것은 권장한다. 
+
+```
+parameters = models.job_create_parameters.JobCreateParameters(
+     location=cfg.location,
+     cluster=models.ResourceId(cluster.id),
+     node_count=2,
+     input_directories=input_directories,
+     std_out_err_path_prefix=std_output_path_prefix,
+     container_settings=models.ContainerSettings(
+         models.ImageSourceRegistry(image='tensorflow/tensorflow:1.1.0-gpu')),
+     job_preparation=models.JobPreparation(
+         command_line="apt update; apt install mpi-default-dev mpi-default-bin -y; pip install horovod"),
+     custom_toolkit_settings = models.CustomToolkitSettings(
+         command_line='mpirun -mca btl_tcp_if_exclude docker0,lo --allow-run-as-root --hostfile $AZ_BATCHAI_MPI_HOST_FILE python $AZ_BATCHAI_INPUT_SCRIPTS/trainAll_simple_v2.py'))
+```
 
 ----------------------
 
