@@ -132,7 +132,7 @@ Hackfest 기간 동안 마이크로소프트와 신세계 프로젝트 개발자
 이번 핵페스트에서의 우리 목표는 기존 모델은 수정하지 않으면서 트레이닝 프로세스를 개선시키기위한 파이프라인을 구축하는 것이었다. 
 
 이 새로운 파이프라인에서 구현하고자 하는 주요 사항은 아래와 같다; 
-1. [Azure Low Priority VMs] (https://azure.microsoft.com/en-gb/blog/announcing-public-preview-of-azure-batch-low-priority-vms/)들을 사용하여 비용 절감의 효과를 얻는다.
+1. [Azure Low Priority VMs](https://azure.microsoft.com/en-gb/blog/announcing-public-preview-of-azure-batch-low-priority-vms/)들을 사용하여 비용 절감의 효과를 얻는다.
 2. 멀티 GPU, 궁극적으로는 멀티 GPU를 장착한 멀티 머신에서 모델을 트레이닝 시킨다.
 3. 기존 모델을 최대한 수정없이 그대로 둔다. 신세계 입장에서는 TensorFlow를 사용해서 모델을 계속 실행하고 [Keras](https://keras.io/)로 빌드하는 것이 중요했다.
 
