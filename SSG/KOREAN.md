@@ -1,6 +1,4 @@
-# (DRAFT) SSG AI Chatbot with Deep Learning 
-
-## 아직 완료되지 않은 글이기에 외부 공유는 금지합니다. 
+# SSG AI Chatbot with Deep Learning 
 
 SSG.COM의 AI Data Platform 팀은 다양한 오픈소스를 사용하여 자체 AI ChatBot을 개발하여 서비스하고 있다. 하지만, 현재의 아키텍처가 효과적인 지에 대해 의구심이 있었고 Microsoft와 함께 더 나은 아키텍처를 얻어내기 위한 여정을 떠나고자 하였다. Deep Learning부터 Serverless까지 가능한 한 필요한 모든 영역을 이번 핵페스트를 통해서 검증한다.
 
@@ -10,12 +8,12 @@ SSG.COM의 tb-be 아키텍처와 핵페스트에서 사용된 기술들은 다�
 
 - [Azure Batch and Batch AI](https://azure.microsoft.com/en-us/services/batch-ai/) : 딥러닝 모델 트레이닝을 위한 운영 환경
 - [Azure Logic App](https://azure.microsoft.com/en-us/services/logic-apps/) : 트레이닝 모델이 변경되었음을 관리자에게 통지
-- [Web App for Container on Linux](https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-custom-docker-image) :  AI inference 서비스의 호스팅 환경
+- [Web App for Container on Linux](https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-custom-docker-image) :  AI inference 서비스의 호스팅 환경. 그 밖의 Python Dependency 가 있는 Web Service 의 경우도 이곳에서 Serving 되도록 구성하였음(이는 2018년 5월 현재 Azure Function이 Python Preview 단계 였기 때문임).
 - [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/) : 사설 도커 이미지 저장소
 - [Container WebHook](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-webhook)을 사용하여 Azure Container Registry에서 Web App for Container로 [Continuous Deployment](https://docs.microsoft.com/en-us/azure/app-service/app-service-continuous-deployment) 적용
 - [Deployment Slot](https://docs.microsoft.com/en-us/azure/app-service/web-sites-staged-publishing) : Web App for Container의 스테이징/운영 간에 전환(Swap)을 위해서 배포 슬롯을 사용
 - [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) : 고객의 API Gateway(Chatbot)을 위한 서버리스 플랫폼
-- Continuous Deployment를 위해 [Github Private Repository](https://github.com/) 사용
+- Continuous Deployment를 위해 [Github Private Repository](https://github.com/) 사용(업데이트 : 2018년 3월 github 를 VSTS 프로젝트로 이관하였음)
 - [Cosmos DB (SQL)](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction) : 채팅 사용자의 상태 저장소
 - [Azure Storage Queue](https://azure.microsoft.com/en-us/services/storage/queues/) : Azure Function 간 통신 매개
 - [Application Insight](https://azure.microsoft.com/en-us/services/application-insights/) : 게이트웨이의 성능과 사용 통계를 모니터링
@@ -44,21 +42,25 @@ Hackfest : 2017년 12월 18일 ~ 22일 / 5 일간
 ## Partner profile 
 
 신세계 그룹은 대한민국을 대표하는 가장 큰 종합소매사업자이다. 신세계 그룹 산하의 계열사들을 통해 소매, 패션, 호텔업, 식음료, 인프라, 다목적 쇼핑몰 등 다양한 사업을 영위하고 있다.
-신세계 그룹은 그 동안 이마트, 신세계백화점, 트레이더스, 신세계TV쇼핑에서 각자 운영되던 온라인 쇼핑몰을 통합한 SSG.COM이라는 통합 온라인 쇼핑몰 서비스를 2014년에 런칭했다. SSG.COM 서비스는 매년 30%가 넘는 초고속 성장을 하고 있으며 고객센터를 통해 하루에 10,000건에 달하는 고객 서비스 콜이 유입되고 있다. 
+신세계 그룹은 그 동안 이마트, 신세계백화점, 트레이더스, 신세계TV쇼핑 등에서 각자 운영되던 온라인 쇼핑몰을 통합한 SSG.COM이라는 통합 온라인 쇼핑몰 서비스를 2014년에 런칭했다. SSG.COM 서비스는 매년 30%가 넘는 초고속 성장을 하고 있으며 고객센터를 통해 하루에 20,000건에 달하는 고객 서비스 콜이 유입되고 있다. 
 
-고객센터 운영비용 절감과 고객들에게 더 좋은 사용자 경험을 제공하기 위해 오픈소스 기술 기반의 인공지능 챗봇 서비스 개발 프로젝트를 2017년 중반에 착수했으며 2018년 상반기에 정식 출시를 계획하고 있다. 
+고객센터 운영비용 절감과 고객들에게 더 좋은 사용자 경험을 제공하기 위해 오픈소스 기술 기반의 인공지능 챗봇 서비스 개발 프로젝트를 2017년 중반에 착수했으며 2018년 상반기에 정식 출시를 계획하고 있다. (업데이트 : 2018년 3월 말 정식으로 Production 오픈 하였다.)
 
-또한 경쟁사들이 자사의 e-commerce 서비스에 공격적으로 AI 기술을 접목시키고 있는 시장 상황에 대응하기 위해 이후 이 AI 챗봇 서비스를 통해 고객서비스 업무 이외에도 다양한 형태의 AI 기술을 추가하여 서비스를 제공할 예정이다.
+또한 경쟁사들이 자사의 e-commerce 서비스에 공격적으로 AI 기술을 접목시키고 있는 시장 상황에 대응하기 위해 이후 이 AI 챗봇 서비스를 통해 고객서비스 업무 이외에도 다양한 형태의 AI 기술을 추가하여 서비스를 제공할 예정이다(현재 SSG는 자연어 기반의 장보기 Bot 프로젝트를 2018년 5월 추가로 진행 중이다).
 
 ## Problem statement
 
-고객은 현재 Deep Learning 기반의 AI Chatbot 서비스를 개발하고 있다. 현재는 시범적으로 모든 서비스를 Azure의 VM 상에서 테스트를 하고 있다. 테스트되고 있는 서비스 영역은 총 4개의 영역으로서, 그들은 각각 AI Model Traing Layer와 AI Serving(Inference) Layer, API Gateway(Chatbot App) Layer, Admin Management Web Layer로 나누어져 있다. 모든 서비스들은 현재 Azure VM에서 테스트되고 있다.
+고객은 현재 Deep Learning 기반의 AI Chatbot 서비스를 개발하고 있다. 현재는 시범적으로 모든 서비스를 Azure의 VM(GPU DSVM(Data Science VM)) 상에서 테스트를 하고 있다. 테스트되고 있는 서비스 영역은 총 4개의 영역으로서, 그들은 각각 AI Model Traing Layer와 AI Serving(Inference) Layer, API Gateway(Chatbot App) Layer, Admin Management Web Layer로 나누어져 있다. 모든 서비스들은 현재 Azure VM에서 테스트되고 있다.
 
 IaaS 기반의 아키텍처는 추후 운영 규모가 커질 경우, 자연스럽게 관리해야 할 VM의 수가 늘어나게 되면서 Infra 관리 및 유지보수에 추가적인 리소스를 투입해야 하기에 효율적이지 않다고 판단했다. 그렇기에 가급적이면 IaaS를 사용하지 않는 아키텍처를 원했다. 또한, AI Model Training Layer의 경우 상시 운영해야 할 필요도 없는데 GPU가 지원되는 VM을 계속해서 사용해야만 하기에 비용적인 측면에서도 부담스러워했다. 해서, 고객은 가급적 모든 서비스를 Managed Service 환경, 즉 PaaS 환경을 활용하는 아키텍처로 변경하고 싶어했다.
 
-또한, AI Inference Layer의 경우는 고객사 자체의 사전 테스트를 통해서 굳이 GPU가 필요하지 않다는 결론을 얻었으며, 이번 핵페스트에서는 가급적 Azure App Service를 적용하면서 Web App의 수많은 훌륭한 기능들(자동 배포, 배포 슬롯 등)을 활용하고 싶어했다. 
+또한, AI Inference Layer의 경우는 고객사 자체의 사전 테스트를 통해서 굳이 GPU가 필요하지 않다는 결론을 얻었으며, 이번 핵페스트에서는 가급적 Azure App Service를 적용하면서 Web App의 수많은 훌륭한 기능들(자동 배포, 배포 슬롯 등)을 활용하고 싶어했다.
 
-더불어, Chatbot App에 해당하는 API Gateway 영역 역시 마이크로서비스나 서버리스 아키텍처를 도입해서 개발자들이 개별 로직에만 집중할 수 있도록 개선하고 싶어했다.
+> 비고 : Chatbot의 경우 Batch Inference 가 아닌, Realtime Online Inference 시나리오에 해당되며, Batch Size 가 1인 특수성이 있다. 이 경우의 CPU와 GPU 의 Inference 성능 차이를 실험한 결과는 이곳에 블로깅 되어있다. 
+> 
+> [miniBatch Deep Learning Realtime Inferece 성능 비교, CPU vs GPU](http://hoondongkim.blogspot.kr/2017/12/deep-learning-inference-serving.html)
+
+더불어, Chatbot App에 해당하는 API Gateway 영역 역시 마이크로서비스나 서버리스 아키텍처를 도입해서 개발자들이 개별 로직에만 집중할 수 있도록 개선하고자 했다.
 
 그리고, 모든 서비스에 대해서 전체적으로 배포 자동화를 도입하길 원했다. 기존에는 모든 서비스에 애플리케이션을 배포하는 부분이 수동으로 이루어지고 있었으며 이러한 반복 배포 작업이 비효율적이라고 판단했기에 이번 핵페스트를 통해서 가능한 한 많은 부분에 Continuous Deployment를 적용하기 원했다. 기존의 고객사 아키텍처는 대략 다음과 같다.
 
@@ -68,7 +70,8 @@ IaaS 기반의 아키텍처는 추후 운영 규모가 커질 경우, 자연스�
 
 이번 핵페스트를 진행하면서 사전에 정의한 요구사항과 목표는 다음과 같다.
 
-- 각각의 서비스들은 가능하다면 PaaS 환경에서 운영하도록 설계한다.
+- 각각의 서비스들은 가능하다면 PaaS 환경에서 운영하도록 설계한다. 
+    > 업데이트 : 2018년 3월 말 오픈 시점, 100% Serverless FaaS(Function as a Service, Azure Function) 및 BaaS(Backend as a Service, Web App) 로 구성 오픈되었으며, Dev Zone 을 제외 하고는 Production Zone 의 경우 VM이 하나도 존재하지 않은 체로 오픈 되었다.
 - 유연하고(flexible) 확장가능한(scalable) Architecture로 설계한다.
 - AI Model Training은 Multi-Host, Multi-GPU를 활용하도록 설계한다.
 - 배포가 빈번하게 발생하는 서비스 Layer에 대해서는 자동 배포(Continuous Deployment) 전략을 적용한다.
@@ -77,7 +80,9 @@ IaaS 기반의 아키텍처는 추후 운영 규모가 커질 경우, 자연스�
 
 ## Sources Repository
 
-고객사의 요청에 의해서 이번 핵페스트에서는 GitHub Private Repo를 사용한다. 각각의 서비스 Layer별로 전용 Repo를 구성하였으며 구성된 Repository의 모습은 다음과 같다.
+고객사의 요청에 의해서 이번 핵페스트에서는 GitHub Private Repo를 사용한다. 각각의 서비스 Layer별로 전용 Repo를 구성하였으며 구성된 Repository의 모습은 다음과 같다
+
+> 업데이트 : 오픈 시점에는 VSTS로 변경되었다
 
 - total 4 Private Repos, one for each service layer 
 
@@ -89,7 +94,9 @@ IaaS 기반의 아키텍처는 추후 운영 규모가 커질 경우, 자연스�
 
  ![Project Milestone](images/SSG_Milestone.png)
 
-이번 SSG핵페스트의 백로그는 3개 Epic과 11개의 User Story, 28개 하위 태스크로 구성되었으며. 백로그 관리 도구로는 VSTS (Visual Studio Team Services)를 사용했다. VSTS의 경우 그 자체로 CI/CD 기능을 제공하고 DevOps 효율성을 향상시키는데 좋은 도구이지만 이번 Hackfest에서 Build/Release 자동화는 범위 밖에 있어 백로그 관리 용도로 제한적으로 사용했다. VSTS와 더불어 Hackfest에 참여한 개발자간의 협업도구로 Slack을 사용했다. 
+이번 SSG핵페스트의 백로그는 3개 Epic과 11개의 User Story, 28개 하위 태스크로 구성되었으며. 백로그 관리 도구로는 VSTS (Visual Studio Team Services)를 사용했다. VSTS의 경우 그 자체로 CI/CD 기능을 제공하고 DevOps 효율성을 향상시키는데 좋은 도구이지만 이번 Hackfest에서 Build/Release 자동화는 범위 밖에 있어 백로그 관리 용도로 제한적으로 사용했다. VSTS와 더불어 Hackfest에 참여한 개발자간의 협업도구로 Slack을 사용했다.
+
+> 업데이트 : 프로젝트의 오픈 시점에는 VSTS를 도입하였다
 
 ![VSTS Kanban](images/SSG_VSTS.png) | ![Slack Channel](images/SSG_Slack.png)
 
@@ -105,7 +112,7 @@ Hackfest 기간 동안 마이크로소프트와 신세계 프로젝트 개발자
 
 1. AI Model Training Layer : Tenserflow와 keras를 사용하여 Deep Learning을 수행하는 레이어
 2. AI Inference(& Serving) Layer : Python, Flask, keras를 사용하여 모델 데이터를 Web API로 서빙하는 레이어(이는 LUIS 즉, [Language Understanding Intelligent Service](https://www.luis.ai/)처럼 Intent 분석을 수행하는 서비스이다).
-3. API Gateway(Chatbot App) Layer: Python, Flask 기반으로 ChatBot Application 역할을 수행하는 Web API 서비스. 채널 및 방 관리는 SendBird를 활용한다.
+3. API Gateway(Chatbot App) Layer : Python, Flask 기반으로 ChatBot Application 역할을 수행하는 Web API 서비스. 채널 및 방 관리는 SendBird를 활용한다.
 4. Admin Management WebSite Layer : PHP로 개발된 관리자용 웹 사이트. Intent나 Entity 관리 및 Realtime Training 호출 등의 작업을 수행할 수 있다.
 
 ### Proposed architecture
@@ -115,6 +122,8 @@ Hackfest 기간 동안 마이크로소프트와 신세계 프로젝트 개발자
 ![Main Architecture](images/main_arch1.png)
 
 다만, 이러한 아키텍처를 위해서 사용해야 할 Azure Resource 중에는 아직 Korea Region에서 가용하지 않은 것들도 있기에, 고객 입장에서 성능적으로 가장 효과적이도록 지역적으로 배분하여 설계한 모습은 다음과 같다.
+
+> 업데이트 : 2018년 3월 말 오픈 시점, Korea region 에 Azure Batch AI 를 제외한 모든 Azure Resource가 가용하게 되었기에 현재는 Korea Region 을 대부분 활용하고 있다.
 
 ![Main Architecture by region](images/main_arch_region.png)
 
@@ -133,7 +142,7 @@ Hackfest 기간 동안 마이크로소프트와 신세계 프로젝트 개발자
 
 이 새로운 파이프라인에서 구현하고자 하는 주요 사항은 아래와 같다; 
 1. [Azure Low Priority VMs](https://azure.microsoft.com/en-gb/blog/announcing-public-preview-of-azure-batch-low-priority-vms/)들을 사용하여 비용 절감의 효과를 얻는다.
-2. 멀티 GPU, 궁극적으로는 멀티 GPU를 장착한 멀티 머신에서 모델을 트레이닝 시킨다.
+2. 멀티 GPU, 궁극적으로는 멀티 GPU를 장착한 멀티 머신에서 모델을 트레이닝 시킨다.(Multi Host + Multi GPU)
 3. 기존 모델을 최대한 수정없이 그대로 둔다. 신세계 입장에서는 TensorFlow를 사용해서 모델을 계속 실행하고 [Keras](https://keras.io/)로 빌드하는 것이 중요했다.
 
 Azure는 다양한 [GPU 장착 장비 타입](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-gpu)을 제공한다. 우리는 주로 Kepler 기반의 K80 GPU를 장착한 NC 시리즈 머신을 가지고 작업했다. 핵페스트 이후 ND 시리즈가 정식 출시되었는데 이후 이 머신을 사용하는 것이 가장 적합할 것으로 예상된다. ND시리즈는 Pascal 기반의 P40 GPU 유닛을 제공한다. 이 유닛은 대용량 메모리 (24GB)를 가지고 있고 초고성능의 반정밀도 FLOPs를 지원하여 Deep Neural Network 트레이닝에 이상적이다. 근래 추세는 DNN 모델의 트레이닝과 인퍼런싱을 위해 반정밀도 연산을 사용하는 쪽으로 움직이고 있으며 이는 주요 프레임웍들을 통해 지원되고 있다. (*Courbariaux et al. Training deep neral networks with low precision multiplications. 2015.* [arXiv:1412.7024](https://arxiv.org/abs/1412.7024) 참조)
@@ -141,7 +150,7 @@ Azure는 다양한 [GPU 장착 장비 타입](https://docs.microsoft.com/en-us/a
 Azure N 시리즈 인스턴스는 최대 4개의 GPU를 지원한다. 멀티 노드에 걸쳐 트레이닝시키기 위해서 고성능의 네트워킹 상호연결이 필요한데, NC24r 혹은 ND24r 인스턴스들은 고성능 [RDMA를 지원하는](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-hpc#rdma-capable-instances) 2차 네트워킹을 장착하고 있다. 고성능 네트워크가 필요한 이유는 DNN 트레이닝에 있어 그 확장성의 제한은 노드들 간의 (실제로는 각각의 GPU간에) 가중치 데이터들의 전송속도에 달려 있기 때문이다. 
 
 #### 아키텍쳐 고려사항
-우리는 파이프라인을 구현하는데 있어 아래와 같은 몇가지 아키텍쳐를 고려했었다. :
+우리는 파이프라인을 구현하는데 있어 아래와 같은 몇가지 아키텍처를 고려했다.
 
 	• Hadoop + Spark + BigDL
 	• Hadoop + Spark + TensorFlowOnSpark
@@ -156,6 +165,8 @@ Azure N 시리즈 인스턴스는 최대 4개의 GPU를 지원한다. 멀티 노
 TensorFlow는 [분산 트레이닝](https://www.tensorflow.org/deploy/distributed)을 지원하지만 모델 트레이닝 프로그램에 대한 상당량의 수정이 요구된다. 이번 핵페스트 초기에 우리는 Uber에서 개발한 [Horovod](https://github.com/uber/horovod) 프레임웍으로 실험하는 걸로 결정했다. 
 
 Horovod는 TensorFlow 트레이닝에 MPI 기반의 [작업 분산 패턴](https://www.tensorflow.org/deploy/distributed)을 적용한다. 초기 검토에서부터 이 방식은 상당히 명료한 방식으로 보였다. 또한 이는 이번 핵페스트의 중요한 성공 요소였던 [Keras를 지원](https://github.com/uber/horovod/blob/master/examples/keras_mnist.py)한다.
+
+Horovod 는 7~8줄 정도의 코드 수정만으로, Multi Host 및 Multi GPU 를 전혀 고려하지 않고 작성된 Deep Learning 코드가 MPI를 매게로 하여 분산 병렬(Multi Host + Multi GPU) 수행될 수 있다. 그리고, 그 부분을 Elastic 하게 H/W Infra 적으로 PaaS 형태의 유연성을 제공하는 것이 Azure Batch AI 이다. 신세계에서는 Azure Batch AI + Horovod 를 구성하기에 앞서, TensorflowOnSpark 도 고려 및 실험해본 바 있었으나, Hadoop 및 Spark 등의 무거운 Cluster 의 dependecy 가 있어, 보다 유연하고 가벼운 구성으로 Horovod 를 더 선호하게 되었다.
 
 #### Azure Batch AI를 통한 Simple GPU 클러스터 관리
 우리 팀은 Azure에서 제공되는 [Azure Batch](https://azure.microsoft.com/en-us/services/batch/) HPC 서비스에 대한 많은 경험을 가지고 있었다. 또한 Batch를 통해 저비용의 우선순위가 낮은 VM에 액세스 할 수도 있다. 우리는 Batch 상단의 Docker 기반 레이어인 [Azure Batch Shipyard](https://github.com/Azure/batch-shipyard)를 사용하는 것을 고려했으나 결국 새로 출시된 [Azure Bach AI](https://azure.microsoft.com/en-us/blog/batch-ai-public-preview/) 서비스를 사용하기로 결정했다. 이 서비스는 이번 핵페스트 2달 전에 출시되었기 때문에 실제로 적용해보는건 모든 팀원들이 처음이었으나 Batch와 Batch Shipyard에 대한 기존 전문성과 경험이 이 서비스를 적용하는데 유용하게 작용했다. 
@@ -189,6 +200,9 @@ parameters = models.job_create_parameters.JobCreateParameters(
 Title : Deep Learning Multi Host & Multi GPU Architecture with tensorflow, cntk, keras, horovod, **Azure Batch AI**    
 Link : http://hoondongkim.blogspot.kr/2018/01/deep-learning-multi-host-multi-gpu.html
 
+Title : Deep Learning Multi Host & Multi GPU 성능 비교 on Azure Batch AI( Tensorflow + Keras + Horovod + Azure Batch AI )
+Link : http://hoondongkim.blogspot.kr/2018/01/deep-learning-multi-host-multi-gpu_11.html
+
 심지어는, 이러한 내용을 단계별로 정리하여 다음과 같은 제목으로 개발자 커뮤니티와 함께 Hands-On Lab을 진행하기도 하였다.
 
 Title : Deep Learning with distributed GPU based on Azure Batch AI  
@@ -204,7 +218,7 @@ Link : https://onoffmix.com/event/123844
 
 AI Serving Layer는 AI Inference 역할을 수행하는 웹 서비스로, 기존에는 Python 언어로 개발되어 있었으며, [Data Science Virtual Machine](https://azure.microsoft.com/en-us/services/virtual-machines/data-science-virtual-machines/)(OS는 Ubuntu) 머신 내 Flask Web server 상에서 운영 중에 있다(개발환경은 jupyter 노트북을 사용). 사용하는 라이브러리는 tensorflow(1.3.0), keras(2.0.8), python-twitter 등이다.
 
-이 서비스는 역할적으로는 LUIS 즉, [Language Understanding Intelligent Service](https://www.luis.ai/)와 유사한 서비스이다. SSG.COM 데이터 플랫폼 팀에서 자체 개발한 AI Model Training Layer에서 trained된 Model(.H5) 바이너리 파일을 h5py 라이브러리를 사용하여 Flask 웹서버의 메모리에 통채로 올려서 LUIS 관련 서비스를 제공하다. 현재 주된 역할은 챗봇 사용자의 메시지에 대한 Intent와 Entity 등을 파악하는 것이지만, 이후로는 더 많은 역할을 수행하도록 계속해서 발전될 예정이다.
+이 서비스는 역할적으로는 LUIS 즉, [Language Understanding Intelligent Service](https://www.luis.ai/)와 유사한 서비스이다. SSG.COM 데이터 플랫폼 팀에서 자체 개발한 AI Model Training Layer에서 trained된 Model(.H5) 바이너리 파일을 h5py 라이브러리를 사용하여 Flask 웹서버의 메모리에 올려서 LUIS 관련 서비스를 제공하다. 현재 주된 역할은 챗봇 사용자의 메시지에 대한 Intent와 Entity 등을 파악하는 것이지만, 이후로는 더 많은 역할을 수행하도록 계속해서 발전될 예정이다.
 
 #### What customer want
 
@@ -212,7 +226,7 @@ AI Serving Layer는 AI Inference 역할을 수행하는 웹 서비스로, 기존
 
 사전 기술 미팅 중에 우리는 층이 그리 깊지 않은 Deep Learning 모델은 CPU만으로도 만족할만한 성능을 얻을 수 있을 것 같다는 의견을 제시하였고, 고객은 이러한 의견에 동의하여 핵페스트 이전에 사전 성능 테스트를 통해서 그에 대한 결과를 확인하기로 하였다. 
 
-테스트 결과, 그들이 개발한 AI Serving Layer는 GPU보다는 CPU 환경에서 더욱 빠르게 동작한다는 테스트 결과를 얻었다(하단의 Refer 참고). 그에 따라 고객은 GPU 기반의 VM을 사용하는 IaaS 시나리오에서 벗어나, PaaS(Azure App Service) 환경을 도입하길 원했으며, 이를 통해 안정성, 관리성 뿐만 아니라 유연한 개발 및 배포 환경을 확보하고자 하였다.
+테스트 결과, 그들이 개발한 AI Serving Layer는 GPU보다는 CPU 환경에서 더욱 빠르게 동작한다는 테스트 결과를 얻었다(하단의 Refer 참고). 그에 따라 고객은 GPU 기반의 VM을 사용하는 IaaS 시나리오에서 벗어나, PaaS(Azure App Service) 환경을 도입하길 원했으며, 이를 통해 안정성, 관리성 뿐만 아니라 유연한 개발 및 배포 환경을 확보하고자 하였다. Chatbot의 경우 실시간 Inference 이며, miniBatch size 가 1인 inference 이므로, 예상과 다르게 CPU가 GPU보다 성능이 더 좋았다. 
 
 > Refer to [Experiment and Performance Test for Deep Learning Inference & Serving : > GPU vs CPU (Korean)](http://hoondongkim.blogspot.jp/2017/12/deep-learning-inference-serving.html) 
 >   - blog post by Hoondong Kim(SSG Chief Dev, AI Data platform team)  
@@ -225,7 +239,7 @@ Envisioning Plan 미팅 후에 검토되었던 방안은 Web App(Windows)의 KUD
 
 ![images/AIServ-arch01.png](images/AIServ-arch01.png)
 
-다만, 이번 핵페스트에서는 VSTS(Visual Studio Team Service)를 활용한 Docker build, Push의 자동화는 배제하기로 하였다. 이는 고객사의 QA 정책과 관련된 이슈들(Test 및 QA 관련 이슈)이 발생할 가능성이 있어서이다. 해서, 별도의 전용 Docker Build 머신(VM)을 활용하여 로컬 테스트를 수행한 다음에 수동으로 Azure Container Registry에 Push 하는 것으로 협의하였다.
+다만, 이번 핵페스트에서는 VSTS(Visual Studio Team Service)를 활용한 Docker build, Push의 자동화는 배제하기로 하였다. 이는 고객사의 QA 정책과 관련된 이슈들(Test 및 QA 관련 이슈)이 발생할 가능성이 있어서이다. 해서, 별도의 전용 Docker Build 머신(VM)을 활용하여 로컬 테스트를 수행한 다음에 수동으로 Azure Container Registry에 Push 하는 것으로 협의하였다. (오픈 시점 VSTS로 이관 작업을 진행하였으며, 전체 자동화 이관은 여전히 진행 중이다.)
 
 #### Continuous Deployment Scenario
 
@@ -251,6 +265,8 @@ Push History via Container WebHook
 
 게이트웨이의 역할이자, Chatbot App에 해당하는 Web API Gateway(chatbot) Layer는 한국에서 서비스되고 있는 반면, AI Serving/Inference Layer(AI service like LUIS)는 Japan region에서 Web app for Container로 서비스하고 있다. 그 이유는 한국에 아직 Azure Container Registry이 지원되지 않기 때문이다(Azure Container Registry과 Web App for Container는 동일 Region에 있어야 배포 비용 및 속도에 효율적이다). 만일, ACR(Azure Container Registry)을 한국에 생성할 수 있다면 더욱 빠른 Latency를 얻을 수 있을 것이다. 고객은 추후 한국에서 ACR이 서비스 된다면, 현재 AI Serving Layer와 관계된 모든 서비스(ACR, Web App for Container, Blob Storage for H5 model files etc)를 한국으로 옮길 계획이다.
 
+> 업데이트 : 오픈 시점에 Korea Region 이 가용하여, 해당 서비스는 Korea Region에서 오픈하였다.
+
 #### Issues and Workaround
 
 기존 모듈을 Managed Service 환경으로 옮기면서 겪었던 몇 가지 문제 중 하나는 로딩 타임 제약과 관계된 것이다. 현재 고객이 Python으로 개발한 AI Inference 서비스의 동작 방식은 약 1.7G의 모델 파일을 Flask 웹 서버가 시작하는 시점에 모두 메모리로 로드하여 서비스하는 구조이다. 물론, 이러한 구조는 사실 개선 혹은 재설계가 필요한 부분이지만 그는 고객사에서 자체 개발 일정에 따라 추후 개선해야 하는 부분이며, 지금 변경할 수는 있는 부분이 아니기에 현재로서는 기존 개발된 상태의 모듈 그대로 서비스가 동작하게 해야 한다. 문제가 되는 부분은 기존에 개발된 Web App이 처음 시작하는데 약 4분~5분 정도의 초기 로딩타임이 걸린다는 것이다. 그런데, Web App for Container는 기본적으로 초기 시작 시간의 Limit이 230 seconds이기에 그 이상의 로딩 time이 걸리는 Web App은 로딩이 불가능하다. 그렇기에 고객사의 기존 서비스가 제대로 시작할 수 없는 문제가 발생했으며, 다음과 같은 Container Log가 계속해서 남는 것을 확인할 수 있었다. 
@@ -274,6 +290,10 @@ Application Setting for Stage
 #### Customer Feedback
 
 현재의 Web App for Container 플랫폼은 Deployment Slot 간에 Swap을 수행하는 데 너무 많은 시간이 걸린다. Production과 Stage 모두가 올바로 동작하는 것을 확인하고 Swap을 수행하는 경우에도(이미 두 Web App이 모두 운영 상황에 있음에도 불구하고) 새로운 이미지를 다시 로드하는 만큼의 시간이 걸린 뒤에 Swap이 수행된다. Swap에 많은 시간이 소요되는 문제는 Microsoft의 개발팀에서 개선해 줄 필요가 있다.
+
+배포해야 하는 Deep Learning Model 의 크기 문제는 Embedding Layer 파일을 분리하고, Model 의 파일 포맷을 변경 및 online traing 부를 제외하고는 변수를 Freezing 하는 방식을 통하여, 1/3 정도로 Size 를 줄 일 수 있었으며, 해당 크기는 운영상에 지장이 없는 수준이었다. Tensorflow Serving 을 inference Layer에서 사용하지 않은 이유는 Keras Model 을 Tensorflow 용으로 Conversion 하는 수고를 덜고, gRPC디펜던시를 줄이고, online serving 과 동시에 training 이 가능한 환경을 구축하며, CNTK Backend 도 활용 가능한 모델을 만들기 위함이었다.
+
+Flask 로 Deep Learning 을 서빙하는 경우 추가적으로 성능 튜닝이 필요한데, 이는 Flask 및 Python 의 특성에 기인한다. Production 상황에서 Flask Deep Learning Serving 의 성능을 10배 이상 끌어올리기 위해서는 Docker 내부에 nginx + flask + uwsgi 등의 추가적인 설정이 필요하며, 이는 Model 의 성격에 따라 다른 조합이 필요할 수도 있는 부분이다.
 
 ----------------------
 
@@ -345,8 +365,6 @@ API Gateway는 사실상 ChatBot App의 역할이다. 채널 및 방 관리를 �
 
 또한, 각 Function 들의 수행시간을 살펴보기 위해서 Azure에서 제공하는 일종의 Application Performance Monitoring 도구인 Application Insight를 Function App에 적용하였다. 그렇기에, 이제 Chatbot App은 Application Insight를 통해서 모든 호출과 호출 빈도, 각 API의 실행 시간들을 실시간 모니터링 할 수 있게 되었다. 어떤 Function이 가장 많이 호출되고, 수행시간은 얼마나 걸리는지, 예외가 발생하는 경우 그 원인은 무엇인지 등을 각각의 Function 별로, 또한 실시간으로 살펴볼 수 있기에 디버깅 시에도 도움이 되며, 추후 개선해야 할 부분을 파악하는 데에도 도움이 된다.
 
-<모니터링 화면 삽입>
-
 현재 한국에서는 Consumption Plan이 지원되지 않고, 또한 고객도 초기에는 App Service Plan을 직접 조정하여 어느 수준의 비용 플랜이 적절한 지를 확인해 보고자 하기에 현재는 S1 크기의 플랜 하에서 Function App을 운영하고 있다. 추후 실제로 운영을 시작할 경우 및 사용자의 요청이 몰릴 경우에는 좀 더 높은 Plan을 사용할 예정이다.
 
 #### Issues and Workaround
@@ -358,8 +376,6 @@ Refer to https://nsamteladze.wordpress.com/2015/07/19/continuous-deployment-from
 #### Customer Feedback
 
 고객은 핵페스트 초기에 과연 기간 내에 코드 이전까지 포함하는 Migration이 가능할 지에 대해 약간 우려했었다. 하지만, Microsoft의 엔지니어와 함께 모든 로직을 분석하고 실제로 함께 코드 이전을 수행하여 기간 내에 완료할 수 있었기에 매우 깊은 감명을 받았다고 했다. Azure에서 제공하는 서버리스 기능들에 대해서도 매우 흡족해 하였다. 추가적으로 서버리스 아키텍처와 기술을 도입하니 인프라적인 코드나 플랫폼 기반 코드를 더이상 신경쓰지 않고 오로지 Business Logic에만 집중할 수 있어서 만족스럽다는 의견도 있었다.
-
->> 류성의 피드백이 있으면 좋을 듯. 바로 윗 ^ 구문 참고해서 작성하면 좋을 듯.
 
 ----------------------
 
@@ -375,7 +391,7 @@ Admin Web Site는 관리자 전용 웹 사이트이다. 관리자는 Admin 웹�
 
 고객은 다른 Layer들과 마찬가지로 Admin WebSite Layer도 별도의 VM에서 이를 관리하기 보다는 언제든지 Scale in/out이 가능한 PaaS 플랫폼을 적용하고자 했다. 다만, 현재 일부 클라이언트 라이브러리들이 다소 복잡하게 흩어져 있어서 Azure App Service로 이전하려면 기존의 구조를 단일 폴더의 하위로 통합하는 작업이 필요했다. 그렇기에, IaaS 환경에 맞춰 개발된 기존 소스 구조를 PaaS에서 매끄럽게 운영이 가능하도록 마이그레이션을 하길 희망했다. 또한, Github private에 커밋된 소스들이 즉각 Web App에 반영되기를 원했다.
 
-또한, 데이터 저장소로 Maria DB를 사용하고 있는데, 이 부분을 MySQL on Azure로 변경하고 싶어했다. 하지만, 아직 MySQL on Azure은 Preview 상태이며, Korea Region에서 지원되지 않기에 이와 관련된 작업은 이번 핵페스트에서는 제외하기로 했다.
+또한, 데이터 저장소로 Maria DB를 사용하고 있는데, 이 부분을 MySQL on Azure로 변경하고 싶어했다. 하지만, 아직 MySQL on Azure은 Preview 상태이며, Korea Region에서 지원되지 않기에 이와 관련된 작업은 이번 핵페스트에서는 제외하기로 했다. (2018년 3월말 오픈 일주일을 앞두고 MySQL on Azure 가 GA 되었으며, Dev 형태로 사용하던 MySQL on Azure 를 Production 에 적용하여 Meta DB 또한 PaaS 를 사용하여 오픈 가능하였다.)
 
 #### Analysis and Design 
 
@@ -443,7 +459,9 @@ use MicrosoftAzure\Storage\Common\ServiceException;
 
 #### Issues and Workaround
 
-다른 Layer와 마찬가지로 Admin 관리 웹사이트인 이 Layer도 GitHub의 Private Repository와 통합되어야 하고 Web App의 Deployment Option 기능을 사용해서 자동 배포가 되도록 구성해야 했다. 하지만, 앞서 언급했던 것과 마찬가지로 현재 Azure App Service는 Private Repository와 통합하기 위해서는 다소 우회적인 방법을 사용해야 한다. 이 이슈는 다음 링크를 참고하자.
+다른 Layer와 마찬가지로 Admin 관리 웹사이트인 이 Layer도 GitHub의 Private Repository와 통합되어야 하고 Web App의 Deployment Option 기능을 사용해서 자동 배포가 되도록 구성해야 했다. 하지만, 앞서 언급했던 것과 마찬가지로 현재 Azure App Service는 Private Repository와 통합하기 위해서는 다소 우회적인 방법을 사용해야 한다. 이 이슈는 다음 링크를 참고하자. 
+
+> 업데이트 : 오픈시점에는 Github가 VSTS로 이관되었다.
 
 Refer to https://nsamteladze.wordpress.com/2015/07/19/continuous-deployment-from-github-enterprise-repository-to-azure-web-app/
 
@@ -469,16 +487,13 @@ Video : SSG.COM Hackfest
 
 
 ## Business impact 
-(Customer Profile에서 이미 언급한 내용이 중복됨. 수정 필요)
 SSG.COM과 경쟁관계에 있는 많은 e-Commerce / 온라인 쇼핑몰 업체들은 이미 적극적으로 AI 기술을 자사의 서비스에 접목시키고 있다. 이에 대응하기 위해 신세계도 AI 기술에 많은 투자를 하고 있고 AI Bot 서비스를 시작으로 많은 AI 관련 서비스들이 출시될 계획에 있다. 신세계는 Serverless / PaaS 기반의 이번 플랫폼을 완성도 높게 구현함으로써 신규 서비스에 대한 Time-to-Market을 획기적으로 단축시킬 수 있는 경쟁력 있는 AI Bot 플랫폼을 갖추게 되었다. 
 
 ## Partner technical engagement feedback
 
 다음은 이번 핵페스트에 참여한 SSG.COM 개발자들의 피드백이다.
 
-### 이는 아직 고객의 컨폼을 받지 않은 대략적인 아이디어 예시 피드백입니다. 실제 고객의 피드백이 아닙니다.
-
-> 이번 핵페스트를 통해서 다양한 기술적인 실험을 할 수 있어서 만족스러웠습니다. 원래 계획했던 실험은 Multi Host, Multi GPU Job을 Tensorflow + Keras 조합을 사용해서 Azure Batch AI 에서 운영하려는 것이었지만, Horovod와 CNTK를 활용할 경우 더 효과적일수 있다는 조언에 그 부분까지 모두 핵페스트 기간에 실험하느라 밤이 깊어가는 줄도 몰랐던 것 같습니다. 이번 핵페스트를 통해서 최종 아키텍처를 제대로 검증하고 결정할 수 있었기에 매우 만족스럽습니다.
+> 저는 프로젝트를 리딩하는 입장에서, 기존 Web 프로젝트가 아닌 AI 프로젝트이기 때문에 경험하지 못했던, 이중화, 다중 사용자문제 해결, GPU 머신의 비용 문제 등의 문제를 PaaS 를 통하여 해결하고, Business Logic 에만 집중하고자 했습니다. 그리고, Deep Learning 트래이닝의 경우 GPU 리소스가 일시적으로만 많이 필요하고, 항상 필요한 것은 아닌 부분을 PaaS를 통해 효율적으로 리소스 활용했으면 했습니다. 뿐만 아니라, Auto Scale Out 기능이나 무중지 배포 등의 기능을 통해, 익숙치 않은 AI Service 에 있어서도 안전하고, 유연한 구성을 하고자 했습니다. 이번에 진행했던 HackFest 에서 원했던 부분의 모든 Solution 을 함께 구축해 볼 수 있었으며, 해당 경험을 프로덕션에까지 가지고갈 수 있어 매우 뜻깊은 경험이었습니다.
 >
 > 김훈동 Chief Lead, SSG AI Data Platform
 
@@ -490,7 +505,7 @@ SSG.COM과 경쟁관계에 있는 많은 e-Commerce / 온라인 쇼핑몰 업체
 
 ### Our Impact
 
-- 핵페스트 이후, SSG.COM의 AI Chatbot은 IaaS에서 PaaS로 플랫폼 혁신이 이루어졌으며 이러한 사례가 SSG.COM 내부적으로 공유되어 다른 여러 부서에서도 모범 사례로 평가받고 있다. 또한, 이러한 아키텍처를 타 부서에서도 참고하기 시작했다.
+- 핵페스트 이후, SSG.COM의 AI Chatbot은 IaaS에서 PaaS로 플랫폼 혁신이 이루어졌으며 이러한 사례가 SSG.COM 내부적으로 공유되어 다른 여러 부서에서도 모범 사례로 평가받고 있다. 또한, 이러한 아키텍처는 타 부서에도 영향을 주고 있다.
 
 - 핵페스트 이후, 김훈동 Lead는 지속적으로 Tensorflow, keras, CNTK, Horovod를 조합하여 Azure Batch AI에서 운영하는 다양한 테스트를 진행하고 있다. 그러면서, 서비스 Layer를 더욱 효율적으로 개선해 나가고 있다(전처리와 후처리를 기존 모듈에서 분리하여 더 효과적으로 개선하고 있다). 또한, 그가 경험한 기술적인 가치들을 자신의 블로그를 통해서 다른 데이터 전문가들과 지속적으로 공유하고 있다.
 
@@ -498,6 +513,9 @@ SSG.COM과 경쟁관계에 있는 많은 e-Commerce / 온라인 쇼핑몰 업체
 
     Deep Learning Multi Host & Multi GPU Architecture    
     Link : http://hoondongkim.blogspot.kr/2018/01/deep-learning-multi-host-multi-gpu.html
+    
+    Deep Learning Multi Host & Multi GPU 성능 비교 on Azure Batch AI( Tensorflow + Keras + Horovod + Azure Batch AI )
+    Link : http://hoondongkim.blogspot.kr/2018/01/deep-learning-multi-host-multi-gpu_11.html
 
     심지어는, 이러한 내용을 단계별로 정리하여 다음과 같은 제목으로 개발자 커뮤니티와 함께 Hands-On Lab을 진행하기도 하였다.
 
