@@ -9,7 +9,7 @@ SSG.COM의 tb-be 아키텍처와 핵페스트에서 사용된 기술들은 다�
 - [Azure Batch and Batch AI](https://azure.microsoft.com/en-us/services/batch-ai/) : 딥러닝 모델 트레이닝을 위한 운영 환경
 - [Azure Logic App](https://azure.microsoft.com/en-us/services/logic-apps/) : 트레이닝 모델이 변경되었음을 관리자에게 통지
 - [Web App for Container on Linux](https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-custom-docker-image) :  AI inference 서비스의 호스팅 환경. 그 밖의 Python Dependency 가 있는 Web Service 의 경우도 이곳에서 Serving 되도록 구성하였음(이는 2018년 5월 현재 Azure Function이 Python Preview 단계 였기 때문임).
-- [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/) : 사설 도커 이미지 저장소
+- [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/) : 사설 컨테이너 이미지 저장소
 - [Container WebHook](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-webhook)을 사용하여 Azure Container Registry에서 Web App for Container로 [Continuous Deployment](https://docs.microsoft.com/en-us/azure/app-service/app-service-continuous-deployment) 적용
 - [Deployment Slot](https://docs.microsoft.com/en-us/azure/app-service/web-sites-staged-publishing) : Web App for Container의 스테이징/운영 간에 전환(Swap)을 위해서 배포 슬롯을 사용
 - [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) : 고객의 API Gateway(Chatbot)을 위한 서버리스 플랫폼
@@ -29,10 +29,10 @@ SSG.COM의 tb-be 아키텍처와 핵페스트에서 사용된 기술들은 다�
   - 전영규 : 개발자 / Python, Docker, Container
   - 서인석 : 개발자 / PHP, Web App
 - Microsoft 
-  - [김태영](https://github.com/taeyo) : TE / Architecture, Serverless, WebApp, Container, Code Migration etc
   - [최훈](https://github.com/Ogamja) : PM / Project Management
-  - [크리스 올드](https://github.com/cauldnz) : TE Lead / Batch AI, Deep Learning, CNTK etc
-  - 크릿 카무토 : TE / Batch AI, Deep Learning, CNTK etc
+  - [김태영](https://github.com/taeyo) : TE / Architect, Serverless, Container, Code Migration stc
+  - [Chris Auld](https://github.com/cauldnz) : TE Lead / Batch AI, Deep Learning, CNTK etc
+  - Krit Kamuto : TE / Batch AI, Deep Learning, CNTK etc
 
 ## Hackfest period
 
@@ -166,7 +166,7 @@ TensorFlow는 [분산 트레이닝](https://www.tensorflow.org/deploy/distribute
 
 Horovod는 TensorFlow 트레이닝에 MPI 기반의 [작업 분산 패턴](https://www.tensorflow.org/deploy/distributed)을 적용한다. 초기 검토에서부터 이 방식은 상당히 명료한 방식으로 보였다. 또한 이는 이번 핵페스트의 중요한 성공 요소였던 [Keras를 지원](https://github.com/uber/horovod/blob/master/examples/keras_mnist.py)한다.
 
-Horovod 는 7~8줄 정도의 코드 수정만으로, Multi Host 및 Multi GPU 를 전혀 고려하지 않고 작성된 Deep Learning 코드가 MPI를 매게로 하여 분산 병렬(Multi Host + Multi GPU) 수행될 수 있다. 그리고, 그 부분을 Elastic 하게 H/W Infra 적으로 PaaS 형태의 유연성을 제공하는 것이 Azure Batch AI 이다. 신세계에서는 Azure Batch AI + Horovod 를 구성하기에 앞서, TensorflowOnSpark 도 고려 및 실험해본 바 있었으나, Hadoop 및 Spark 등의 무거운 Cluster 의 dependecy 가 있어, 보다 유연하고 가벼운 구성으로 Horovod 를 더 선호하게 되었다.
+Horovod 는 7~8줄 정도의 코드 수정만으로, Multi Host 및 Multi GPU 를 전혀 고려하지 않고 작성된 Deep Learning 코드가 MPI를 매개로 하여 분산 병렬(Multi Host + Multi GPU) 수행될 수 있다. 그리고, 그 부분을 Elastic 하게 H/W Infra 적으로 PaaS 형태의 유연성을 제공하는 것이 Azure Batch AI 이다. 신세계에서는 Azure Batch AI + Horovod 를 구성하기에 앞서, TensorflowOnSpark 도 고려 및 실험해본 바 있었으나, Hadoop 및 Spark 등의 무거운 Cluster 의 dependecy 가 있어, 보다 유연하고 가벼운 구성으로 Horovod 를 더 선호하게 되었다.
 
 #### Azure Batch AI를 통한 Simple GPU 클러스터 관리
 우리 팀은 Azure에서 제공되는 [Azure Batch](https://azure.microsoft.com/en-us/services/batch/) HPC 서비스에 대한 많은 경험을 가지고 있었다. 또한 Batch를 통해 저비용의 우선순위가 낮은 VM에 액세스 할 수도 있다. 우리는 Batch 상단의 Docker 기반 레이어인 [Azure Batch Shipyard](https://github.com/Azure/batch-shipyard)를 사용하는 것을 고려했으나 결국 새로 출시된 [Azure Bach AI](https://azure.microsoft.com/en-us/blog/batch-ai-public-preview/) 서비스를 사용하기로 결정했다. 이 서비스는 이번 핵페스트 2달 전에 출시되었기 때문에 실제로 적용해보는건 모든 팀원들이 처음이었으나 Batch와 Batch Shipyard에 대한 기존 전문성과 경험이 이 서비스를 적용하는데 유용하게 작용했다. 
