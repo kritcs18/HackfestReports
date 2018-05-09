@@ -73,7 +73,7 @@ IaaS 기반의 아키텍처는 추후 운영 규모가 커질 경우, 자연스�
 이번 핵페스트를 진행하면서 사전에 정의한 요구사항과 목표는 다음과 같다.
 
 - 각각의 서비스들은 가능하다면 PaaS 환경에서 운영하도록 설계한다. 
-    > 업데이트 : 2018년 3월 말 오픈 시점, 100% Serverless FaaS(Function as a Service, Azure Function) 및 BaaS(Backend as a Service, Web App) 로 구성 오픈되었으며, Dev Zone 을 제외 하고는 Production Zone 의 경우 VM이 하나도 존재하지 않은 체로 오픈 되었다.
+    > 업데이트 : 2018년 3월말 Production 오픈 시점에는 100% Serverless FaaS(Function as a Service) 및 BaaS(Backend as a Service, Web App)로 구성 및 오픈되었으며, Dev Zone 을 제외한 Production Zone 의 경우에는 VM이 하나도 존재하지 않은 상태로 오픈되었다.
 - 유연하고(flexible) 확장가능한(scalable) Architecture로 설계한다.
 - AI Model Training은 Multi-Host, Multi-GPU를 활용하도록 설계한다.
 - 배포가 빈번하게 발생하는 서비스 Layer에 대해서는 자동 배포(Continuous Deployment) 전략을 적용한다.
@@ -96,9 +96,9 @@ IaaS 기반의 아키텍처는 추후 운영 규모가 커질 경우, 자연스�
 
  ![Project Milestone](images/SSG_Milestone.png)
 
-이번 SSG핵페스트의 백로그는 3개 Epic과 11개의 User Story, 28개 하위 태스크로 구성되었으며. 백로그 관리 도구로는 VSTS (Visual Studio Team Services)를 사용했다. VSTS의 경우 그 자체로 CI/CD 기능을 제공하고 DevOps 효율성을 향상시키는데 좋은 도구이지만 이번 Hackfest에서 Build/Release 자동화는 범위 밖에 있어 백로그 관리 용도로 제한적으로 사용했다. VSTS와 더불어 Hackfest에 참여한 개발자간의 협업도구로 Slack을 사용했다.
+이번 SSG핵페스트의 백로그는 3개 Epic과 11개의 User Story, 28개 하위 태스크로 구성되었으며. 백로그 관리 도구로는 VSTS (Visual Studio Team Services)를 사용했다. VSTS의 경우 그 자체로 CI/CD 기능을 제공하고 DevOps 효율성을 향상시키는데 좋은 도구이지만 이번 Hackfest에서 Build/Release 자동화는 범위 밖에 있어 백로그 관리 용도로 제한적으로 사용했다. VSTS와 더불어 Hackfest에 참여한 개발자간의 협업도구로는 Slack을 사용했다.
 
-> 업데이트 : 프로젝트의 오픈 시점에는 VSTS를 도입하였다
+> 업데이트 : 이후, SSG 개발팀은 프로젝트의 오픈 시점에 VSTS를 도입하였다
 
 ![VSTS Kanban](images/SSG_VSTS.png) | ![Slack Channel](images/SSG_Slack.png)
 
@@ -241,7 +241,9 @@ Envisioning Plan 미팅 후에 검토되었던 방안은 Web App(Windows)의 KUD
 
 ![images/AIServ-arch01.png](images/AIServ-arch01.png)
 
-다만, 이번 핵페스트에서는 VSTS(Visual Studio Team Service)를 활용한 Docker build, Push의 자동화는 배제하기로 하였다. 이는 고객사의 QA 정책과 관련된 이슈들(Test 및 QA 관련 이슈)이 발생할 가능성이 있어서이다. 해서, 별도의 전용 Docker Build 머신(VM)을 활용하여 로컬 테스트를 수행한 다음에 수동으로 Azure Container Registry에 Push 하는 것으로 협의하였다. (오픈 시점 VSTS로 이관 작업을 진행하였으며, 전체 자동화 이관은 여전히 진행 중이다.)
+다만, 이번 핵페스트에서는 VSTS(Visual Studio Team Service)를 활용한 Docker build, Push의 자동화는 배제하기로 하였다. 이는 고객사의 QA 정책과 관련된 이슈들(Test 및 QA 관련 이슈)이 발생할 가능성이 있어서이다. 해서, 별도의 전용 Docker Build 머신(VM)을 활용하여 로컬 테스트를 수행한 다음에 수동으로 Azure Container Registry에 Push 하는 것으로 협의하였다. 
+
+> 업데이트 : Production 오픈 시점에는 VSTS로 이관 작업을 수행하였으며, 전체 자동화 이관은 여전히 진행 중인 상태이다.
 
 #### Continuous Deployment Scenario
 
@@ -393,7 +395,9 @@ Admin Web Site는 관리자 전용 웹 사이트이다. 관리자는 Admin 웹�
 
 고객은 다른 Layer들과 마찬가지로 Admin WebSite Layer도 별도의 VM에서 이를 관리하기 보다는 언제든지 Scale in/out이 가능한 PaaS 플랫폼을 적용하고자 했다. 다만, 현재 일부 클라이언트 라이브러리들이 다소 복잡하게 흩어져 있어서 Azure App Service로 이전하려면 기존의 구조를 단일 폴더의 하위로 통합하는 작업이 필요했다. 그렇기에, IaaS 환경에 맞춰 개발된 기존 소스 구조를 PaaS에서 매끄럽게 운영이 가능하도록 마이그레이션을 하길 희망했다. 또한, Github private에 커밋된 소스들이 즉각 Web App에 반영되기를 원했다.
 
-또한, 데이터 저장소로 Maria DB를 사용하고 있는데, 이 부분을 MySQL on Azure로 변경하고 싶어했다. 하지만, 아직 MySQL on Azure은 Preview 상태이며, Korea Region에서 지원되지 않기에 이와 관련된 작업은 이번 핵페스트에서는 제외하기로 했다. (2018년 3월말 오픈 일주일을 앞두고 MySQL on Azure 가 GA 되었으며, Dev 형태로 사용하던 MySQL on Azure 를 Production 에 적용하여 Meta DB 또한 PaaS 를 사용하여 오픈 가능하였다.)
+또한, 데이터 저장소로 Maria DB를 사용하고 있는데, 이 부분을 MySQL on Azure로 변경하고 싶어했다. 하지만, 아직 MySQL on Azure은 Preview 상태이며, Korea Region에서 지원되지 않기에 이와 관련된 작업은 이번 핵페스트에서는 제외하기로 했다. 
+
+> 업데이트 : 2018년 3월말 Production 오픈을 일주일 앞두고 MySQL on Azure가 GA 되었으며, 덕분에 Dev 형태로 사용하던 MySQL on Azure를 Production에도 적용할 수 있게 되었다. 그 결과, Meta DB 또한 PaaS를 적용하여 오픈할 수 있었다.
 
 #### Analysis and Design 
 
