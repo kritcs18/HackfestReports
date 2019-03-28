@@ -29,7 +29,7 @@ The team was composed of the SSG AI Data Platform team and Microsoft CSE enginee
   - Younggyu Jeon : Developer/Python, docker, container
   - Insuk Seo : Developer/PHP, web App
 - Microsoft 
-  - Hun Choi : PM / Project Management
+  - [Hun Choi](https://github.com/Ogamja) : Program Manager / Project Management
   - [Taeyoung Kim](https://github.com/taeyo) : Technical Evangelist / Architect, serverless, container, code migration, etc
   - [Chris Auld](https://github.com/cauldnz) : Software Engineer lead / Batch AI, deep learning, CNTK, etc
   - [Krit Kamtuo](https://github.com/kritcs18) : Software Engineer / batch AI, deep learning, CNTK, etc
