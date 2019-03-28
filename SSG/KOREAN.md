@@ -32,7 +32,7 @@ SSG.COM의 tb-be 아키텍처와 핵페스트에서 사용된 기술들은 다�
   - [최훈](https://github.com/Ogamja) : PM / Project Management
   - [김태영](https://github.com/taeyo) : TE / Architect, Serverless, Container, Code Migration stc
   - [Chris Auld](https://github.com/cauldnz) : TE Lead / Batch AI, Deep Learning, CNTK etc
-  - Krit Kamuto : TE / Batch AI, Deep Learning, CNTK etc
+  - [Krit Kamtuo](https://github.com/kritcs18) : TE / Batch AI, Deep Learning, CNTK etc
 
 ## Hackfest period
 
