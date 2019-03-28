@@ -30,9 +30,9 @@ The team was composed of the SSG AI Data Platform team and Microsoft CSE enginee
   - Insuk Seo : Developer/PHP, web App
 - Microsoft 
   - Hun Choi : PM / Project Management
-  - [Taeyoung Kim](https://github.com/taeyo) : TE / Architect, serverless, container, code migration, etc
-  - [Chris Auld](https://github.com/cauldnz) : TE lead / Batch AI, deep learning, CNTK, etc
-  - [Krit Kamtuo](https://github.com/kritcs18) : TE / batch AI, deep learning, CNTK, etc
+  - [Taeyoung Kim](https://github.com/taeyo) : Technical Evangelist / Architect, serverless, container, code migration, etc
+  - [Chris Auld](https://github.com/cauldnz) : Software Engineer lead / Batch AI, deep learning, CNTK, etc
+  - [Krit Kamtuo](https://github.com/kritcs18) : Software Engineer / batch AI, deep learning, CNTK, etc
 
 ## Hackfest period
 Advance workshop: December 1, 2017   
